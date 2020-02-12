@@ -1,0 +1,34 @@
+[x] after nextTurn() is invoked the first time, Black is in turn
+[x] there are 2 black checkers on R1 initially
+[x] red player is in turn after nextTurn() is invoked the second time, and the die values are 3-4
+[x] 1st roll yields [1, 2]
+[x] no player is in turn after the game has been reset
+[x] 2nd roll yields [3, 4]
+[x] 3rd roll yields [5, 6]
+[x] 4th roll yields [1,2]
+[x] black player has third turn
+[x] the game has no winner after the game has been reset
+[x] the game has no winner after the 5th turn
+[x] red player has won the game when 6th turn
+[x] there are 2 red checkers on B1 initially
+[x] there are no checkers on b2 initially
+[x] there are no checkers on r11 initially
+[x] there are 5 red checkers on b11 initially
+[x] there are 3 black checkers on b8 initially
+[x] there are 5 black checkers on r12 initially
+[x] there are 3 red checkers on r8 initially
+[x] there are 5 red checkers on r6 initially
+[x] there are 2 black checkers on r1 initially
+[x] moving a checker from R1 to R2 at the start of a game is valid according to the AlphaMon rules. After the move there is one black checker on R1 and one black on R2. After the move there is only one move left for Black to make
+[x] after moving two black checkers, using largest dice value first, the number of moves left is 0
+[x] after moving two black checkers, using smallest dice value first, the number of moves left is 0
+[x] dice values returned from diceValuesLeft are sorted in growing order in every turn
+[x] moving a black checker from R1 to R6 is invalid as there is an opponent (red) checker there
+[x] it is invalid to move red checker when black is in turn
+[x] it is invalid to move black checker when red is in turn
+[X] it is invalid to move black checker from when moves have been exhausted
+[x] total number of checkers must is 30 initially and after moving checkers
+[x] black checkers can not be moved further away from black bear off
+[x] red checkers can not be moved further away from red bear off
+[x] black checkers can not be moved to their current locations
+[x] red checkers can not be moved to their current locations
