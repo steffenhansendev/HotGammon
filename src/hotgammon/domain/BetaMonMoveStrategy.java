@@ -3,27 +3,27 @@ package hotgammon.domain;
 import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
-    public int validateMoveWithIndexOfValidDice(Location from, Location to, Map<Location, Color> checkerColor, Map<Location, Integer> checkerCount, Color playerInTurn, int[] diceValuesLeft) {
+    public int validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
         boolean isToOccupiedByOpponent =
-                checkerColor.get(from) != checkerColor.get(to) &&
-                        checkerColor.get(to) != Color.NONE;
+                game.getColor(from) != game.getColor(to) &&
+                        game.getColor(to) != Color.NONE;
         if(isToOccupiedByOpponent) {
             return -1;
         }
-        boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
+        boolean checkerIsNotOwnedByPlayerInTurn = game.getPlayerInTurn() != game.getColor(from);
         if(checkerIsNotOwnedByPlayerInTurn){
             return -1;
         }
         int signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
-                playerInTurn == Color.BLACK && signedDistanceOfMove < 0 || playerInTurn == Color.RED && signedDistanceOfMove > 0;
+                game.getPlayerInTurn() == Color.BLACK && signedDistanceOfMove < 0 || game.getPlayerInTurn() == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
             return -1;
         }
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
         int indexOfValidDice = -1;
-        for(int i = 0; i < diceValuesLeft.length; i++) {
-            if(diceValuesLeft[i] == absoluteDistanceOfMove) {
+        for(int i = 0; i < game.diceValuesLeft().length; i++) {
+            if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
             }
         }

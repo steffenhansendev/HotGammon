@@ -38,7 +38,7 @@ public class GameImpl implements Game {
 
     public boolean move(Location from, Location to) {
         //Validate move
-        int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, checkerColor, checkerCount, playerInTurn, diceValuesLeft);
+        int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
         if(indexOfValidDice == -1) {
             return false;
         }

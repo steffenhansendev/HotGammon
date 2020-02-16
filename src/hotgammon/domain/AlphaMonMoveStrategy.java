@@ -3,14 +3,14 @@ package hotgammon.domain;
 import java.util.Map;
 
 public class AlphaMonMoveStrategy implements MoveStrategy {
-    public int validateMoveWithIndexOfValidDice(Location from, Location to, Map<Location, Color> checkerColor, Map<Location, Integer> checkerCount, Color playerInTurn, int[] diceValuesLeft) {
+    public int validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
         boolean isToOccupiedByOpponent =
-                checkerColor.get(from) != checkerColor.get(to) &&
-                        checkerColor.get(to) != Color.NONE;
+                game.getColor(from) != game.getColor(to) &&
+                        game.getColor(to) != Color.NONE;
         if(isToOccupiedByOpponent) {
             return -1;
         }
-        boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
+        boolean checkerIsNotOwnedByPlayerInTurn = game.getPlayerInTurn() != game.getColor(from);
         if(checkerIsNotOwnedByPlayerInTurn){
             return -1;
         }
