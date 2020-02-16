@@ -38,6 +38,18 @@ public class GameImpl implements Game {
 
     public boolean move(Location from, Location to) {
         //Validate move
+
+        boolean isToOccupiedByOpponent =
+                this.getColor(from) != this.getColor(to) &&
+                        this.getColor(to) != Color.NONE;
+        if(isToOccupiedByOpponent) {
+            return false;
+        }
+        boolean checkerIsNotOwnedByPlayerInTurn = this.getPlayerInTurn() != this.getColor(from);
+        if(checkerIsNotOwnedByPlayerInTurn){
+            return false;
+        }
+
         int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
         if(indexOfValidDice == -1) {
             return false;
