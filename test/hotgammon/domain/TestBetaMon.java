@@ -98,4 +98,11 @@ public class TestBetaMon {
                 game.move(Location.B1, Location.B1));
     }
 
+    @Test
+    public void movingBlackCheckerFromR1toR7ShouldBeRejected() {
+        game.newGame();
+        game.nextTurn();  //[1, 2] & Black
+        assertFalse("Moving black checker from R1 to R7 must be rejected because distance travelled is too far", game.move(Location.R1, Location.R7));
+    }
+
 }

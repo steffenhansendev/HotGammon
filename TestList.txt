@@ -34,4 +34,4 @@
 [x] black checkers can not be moved to their current locations
 [x] red checkers can not be moved to their current locations
 
-[] rejection of moves with a distance that has not been rolled
+[x] rejection of moves with a distance that has not been rolled
