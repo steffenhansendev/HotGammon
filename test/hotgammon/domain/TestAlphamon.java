@@ -32,7 +32,7 @@ public class TestAlphamon {
   
   @Before
   public void setup() {
-    game = new GameImpl();
+    game = new GameImpl(new AlphaMonMoveStrategy());
   }
 
   @Test

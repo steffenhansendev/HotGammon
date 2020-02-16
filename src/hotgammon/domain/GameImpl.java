@@ -4,20 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameImpl implements Game {
-    int[] diceRolled;
-    Color playerInTurn;
-    int turnCount = 0;
-    Color playerInVictory;
-    Map checkerCount = new HashMap<Location, Integer>();
-    Map checkerColor = new HashMap<Location, Color>();
-    int[] diceValuesLeft = new int[0];
+    private int[] diceRolled;
+    private Color playerInTurn;
+    private int turnCount = 0;
+    private Color playerInVictory;
+    private Map checkerCount = new HashMap<Location, Integer>();
+    private Map checkerColor = new HashMap<Location, Color>();
+    private int[] diceValuesLeft = new int[0];
+    private MoveStrategy moveStrategy;
 
-    public GameImpl(){
+    public GameImpl(MoveStrategy moveStrategy){
+        this.moveStrategy = moveStrategy;
         diceRolled = new int[2];
         turnCount = 0;
     }
 
-    @Override
     public void newGame() {
         diceRolled[0] = -1;
         diceRolled[1] = -1;
@@ -26,7 +27,6 @@ public class GameImpl implements Game {
         initializeCheckers();
     }
 
-    @Override
     public void nextTurn() {
         rollTheDice();
         changePlayerInTurn();
@@ -36,9 +36,8 @@ public class GameImpl implements Game {
         }
     }
 
-    @Override
     public boolean move(Location from, Location to) {
-        int indexOfValidDice = validateMoveWithIndexOfValidDice(from, to);
+        int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, checkerColor, checkerCount, playerInTurn, diceValuesLeft);
         if(indexOfValidDice == -1) {
             return false;
         }
@@ -55,37 +54,30 @@ public class GameImpl implements Game {
         return true;
     }
 
-    @Override
     public Color getPlayerInTurn() {
         return playerInTurn;
     }
 
-    @Override
     public int getNumberOfMovesLeft() {
         return diceValuesLeft.length;
     }
 
-    @Override
     public int[] diceThrown() {
         return diceRolled;
     }
 
-    @Override
     public int[] diceValuesLeft() {
         return diceValuesLeft;
     }
 
-    @Override
     public Color winner() {
         return playerInVictory;
     }
 
-    @Override
     public Color getColor(Location location) {
         return (Color) checkerColor.get(location);
     }
 
-    @Override
     public int getCount(Location location) {
         return (int) checkerCount.get(location);
     }
