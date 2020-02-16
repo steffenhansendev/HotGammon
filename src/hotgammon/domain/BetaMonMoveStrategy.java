@@ -1,12 +1,12 @@
 package hotgammon.domain;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
-    public int validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
+    public boolean validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
         int signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
                 game.getPlayerInTurn() == Color.BLACK && signedDistanceOfMove < 0 || game.getPlayerInTurn() == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
-            return -1;
+            return false;
         }
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
         int indexOfValidDice = -1;
@@ -17,7 +17,15 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
         boolean isDistanceNotAvailable = indexOfValidDice == -1;
         if(isDistanceNotAvailable) {
-            return -1;
+            return false;
         }
-        return indexOfValidDice;    }
+        if(game.getNumberOfMovesLeft() == 1) {
+            game.setDiceValuesLeft(new int[0]);
+        } else {
+            int indexOfRemainingDice = indexOfValidDice + 1;
+            indexOfRemainingDice = indexOfRemainingDice % game.diceValuesLeft().length;
+            game.setDiceValuesLeft(new int[]{game.diceValuesLeft()[indexOfRemainingDice]});
+        }
+        return true;
+    }
 }

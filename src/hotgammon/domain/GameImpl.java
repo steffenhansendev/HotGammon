@@ -49,22 +49,14 @@ public class GameImpl implements Game {
             return false;
         }
         //Validate move for specific variant
-        int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
-        if(indexOfValidDice == -1) {
+        boolean indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
+        if(!indexOfValidDice) {
             return false;
         }
         //Move the checker(s)
         checkerCount.put(from, (int) checkerCount.get(from) - 1);
         checkerCount.put(to, (int) checkerCount.get(to) + 1);
         checkerColor.put(to, checkerColor.get(from));
-        //Update unused dice for this turn
-        if(diceValuesLeft.length == 1) {
-            diceValuesLeft = new int[0];
-        } else {
-            int indexOfRemainingDice = indexOfValidDice + 1;
-            indexOfRemainingDice = indexOfRemainingDice % diceValuesLeft.length;
-            diceValuesLeft = new int[]{diceValuesLeft[indexOfRemainingDice]};
-        }
         return true;
     }
 
@@ -94,6 +86,10 @@ public class GameImpl implements Game {
 
     public int getCount(Location location) {
         return (int) checkerCount.get(location);
+    }
+
+    public void setDiceValuesLeft(int[] diceValuesLeft) {
+        this.diceValuesLeft = diceValuesLeft;
     }
 
     //PRIVATE DELEGATIONS
