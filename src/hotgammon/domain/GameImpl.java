@@ -49,8 +49,8 @@ public class GameImpl implements Game {
             return false;
         }
         //Validate move for specific variant
-        boolean indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
-        if(!indexOfValidDice) {
+        boolean isMoveValidAndHasDiceValuesLeftBeenUpdated = moveStrategy.validateMoveAndUpdateDiceValuesLeft(from, to, this);
+        if(!isMoveValidAndHasDiceValuesLeftBeenUpdated) {
             return false;
         }
         //Move the checker(s)
