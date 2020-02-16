@@ -58,10 +58,7 @@ public class GameImpl implements Game {
         checkerCount.put(to, (int) checkerCount.get(to) + 1);
         checkerColor.put(to, checkerColor.get(from));
         //Update unused dice for this turn
-        if(diceValuesLeft.length == 0) {
-            return false;
-        }
-        else if(diceValuesLeft.length == 1) {
+        if(diceValuesLeft.length == 1) {
             diceValuesLeft = new int[0];
         } else {
             indexOfValidDice += 1;
