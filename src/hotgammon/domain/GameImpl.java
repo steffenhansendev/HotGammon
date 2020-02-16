@@ -61,9 +61,9 @@ public class GameImpl implements Game {
         if(diceValuesLeft.length == 1) {
             diceValuesLeft = new int[0];
         } else {
-            indexOfValidDice += 1;
-            indexOfValidDice = indexOfValidDice % diceValuesLeft.length;
-            diceValuesLeft = new int[]{diceValuesLeft[indexOfValidDice]};
+            int indexOfRemainingDice = indexOfValidDice + 1;
+            indexOfRemainingDice = indexOfRemainingDice % diceValuesLeft.length;
+            diceValuesLeft = new int[]{diceValuesLeft[indexOfRemainingDice]};
         }
         return true;
     }
