@@ -1,4 +1,3 @@
-AlphaMon
 [x] after nextTurn() is invoked the first time, Black is in turn
 [x] there are 2 black checkers on R1 initially
 [x] red player is in turn after nextTurn() is invoked the second time, and the die values are 3-4
@@ -27,7 +26,6 @@ AlphaMon
 [X] it is invalid to move black checker from when moves have been exhausted
 [x] total number of checkers must is 30 initially and after moving checkers
 
-BetaMon
 [x] after moving two black checkers, using largest dice value first, the number of moves left is 0
 [x] after moving two black checkers, using smallest dice value first, the number of moves left is 0
 [x] dice values returned from diceValuesLeft are sorted in growing order in every turn
@@ -35,3 +33,5 @@ BetaMon
 [x] red checkers can not be moved further away from red bear off
 [x] black checkers can not be moved to their current locations
 [x] red checkers can not be moved to their current locations
+
+[] rejection of moves with a distance that has not been rolled

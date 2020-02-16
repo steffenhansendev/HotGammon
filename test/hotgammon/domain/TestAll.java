@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         {
                 TestLocation.class,
+                TestCommon.class,
                 TestAlphamon.class,
                 TestBetaMon.class
         }
