@@ -37,29 +37,26 @@ public class GameImpl implements Game {
     }
 
     public boolean move(Location from, Location to) {
-        //Validate move
-
+        //Validate move for all variants
         boolean isToOccupiedByOpponent =
-                this.getColor(from) != this.getColor(to) &&
-                        this.getColor(to) != Color.NONE;
+                checkerColor.get(from) != checkerColor.get(to) &&
+                        checkerColor.get(to) != Color.NONE;
         if(isToOccupiedByOpponent) {
             return false;
         }
-        boolean checkerIsNotOwnedByPlayerInTurn = this.getPlayerInTurn() != this.getColor(from);
+        boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
         if(checkerIsNotOwnedByPlayerInTurn){
             return false;
         }
-
+        //Validate move for specific variant
         int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, this);
         if(indexOfValidDice == -1) {
             return false;
         }
-
         //Move the checker(s)
         checkerCount.put(from, (int) checkerCount.get(from) - 1);
         checkerCount.put(to, (int) checkerCount.get(to) + 1);
         checkerColor.put(to, checkerColor.get(from));
-
         //Update unused dice for this turn
         if(diceValuesLeft.length == 0) {
             return false;
