@@ -48,7 +48,7 @@ public class GameImpl implements Game {
         if(checkerIsNotOwnedByPlayerInTurn){
             return false;
         }
-        //Validate move for specific variant
+        //Validate move and update dice values left for specific variant
         boolean isMoveValidAndHasDiceValuesLeftBeenUpdated = moveStrategy.validateMoveAndUpdateDiceValuesLeft(from, to, this);
         if(!isMoveValidAndHasDiceValuesLeftBeenUpdated) {
             return false;

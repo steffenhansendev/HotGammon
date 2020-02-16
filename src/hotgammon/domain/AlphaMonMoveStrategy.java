@@ -1,7 +1,7 @@
 package hotgammon.domain;
 
 public class AlphaMonMoveStrategy implements MoveStrategy {
-    public boolean validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
+    public boolean validateMoveAndUpdateDiceValuesLeft(Location from, Location to, Game game) {
         switch(game.getNumberOfMovesLeft()) {
             case 0:
                 return false;

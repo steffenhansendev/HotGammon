@@ -1,7 +1,7 @@
 package hotgammon.domain;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
-    public boolean validateMoveWithIndexOfValidDice(Location from, Location to, Game game) {
+    public boolean validateMoveAndUpdateDiceValuesLeft(Location from, Location to, Game game) {
         int signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
                 game.getPlayerInTurn() == Color.BLACK && signedDistanceOfMove < 0 || game.getPlayerInTurn() == Color.RED && signedDistanceOfMove > 0;
