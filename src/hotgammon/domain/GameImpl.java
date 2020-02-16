@@ -1,8 +1,9 @@
 package hotgammon.domain;
+
 import java.util.HashMap;
 import java.util.Map;
-public class GameImpl implements Game {
 
+public class GameImpl implements Game {
     int[] diceRolled;
     Color playerInTurn;
     int turnCount = 0;
