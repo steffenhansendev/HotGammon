@@ -45,7 +45,7 @@ public class GameImpl implements Game {
             return false;
         }
         boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
-        if(checkerIsNotOwnedByPlayerInTurn){
+        if(checkerIsNotOwnedByPlayerInTurn) {
             return false;
         }
         //Validate move and update dice values left for specific variant
