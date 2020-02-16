@@ -36,4 +36,5 @@
 [x] rejection of moves with a distance that has not been rolled
 
 
-TODO: UML CLASS DIAGRAM
+
+TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
