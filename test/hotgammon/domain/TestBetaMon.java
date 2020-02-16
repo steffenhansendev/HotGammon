@@ -16,8 +16,6 @@ public class TestBetaMon {
 
     @Test
     public void movesLeftShouldBe0AfterMoving2CheckersUsingSmallestDiceValueFirstIn1stTurn() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();
         assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
@@ -27,8 +25,6 @@ public class TestBetaMon {
 
     @Test
     public void movesLeftShouldBe0AfterMoving2CheckersUsingLargestDiceValueFirstIn1stTurn() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();
         assertTrue("It must be valid for black to move a checker from R1 to R3 in first turn", game.move(Location.R1, Location.R3));
@@ -38,8 +34,6 @@ public class TestBetaMon {
 
     @Test
     public void diceValuesLeftShouldBeSortedInGrowingOrderAndCoincideWithDiceThrownInEveryTurn() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         //1st turn
         game.nextTurn();
@@ -92,8 +86,6 @@ public class TestBetaMon {
 
     @Test
     public void movingBlackCheckerFromR12toR11ShouldBeRejected() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();  //[1, 2] & Black
         assertFalse("Moving black checker from R12 to R11 must be rejected because the destination is further away from black bear off", game.move(Location.R12, Location.R11));
@@ -101,8 +93,6 @@ public class TestBetaMon {
 
     @Test
     public void movingRedCheckerFromB12ToB9ShouldBeRejected() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();  //[1, 2] & Black
         game.nextTurn();  //[3, 4] & Red
@@ -111,8 +101,6 @@ public class TestBetaMon {
 
     @Test
     public void movingBlackCheckerFromR1toR1ShouldBeRejected() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();  //[1, 2] & Black
         assertFalse("Moving black checker from R1 to R1 must be rejected because destination is the same as origin",
@@ -121,8 +109,6 @@ public class TestBetaMon {
 
     @Test
     public void movingRedCheckerFromB1toB1ShouldBeRejected() {
-        game = new GameImpl(new BetaMonMoveStrategy());
-
         game.newGame();
         game.nextTurn();  //[1, 2] & Black
         game.nextTurn();  //[3, 4] & Red
