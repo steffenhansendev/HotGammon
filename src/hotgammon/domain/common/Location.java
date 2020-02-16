@@ -1,4 +1,4 @@
-package hotgammon.domain;
+package hotgammon.domain.common;
 /** This enum represents an enumeration of board locations (the
     "points") in the Backgammon board.
 

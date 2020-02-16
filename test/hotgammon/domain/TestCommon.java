@@ -1,5 +1,10 @@
 package hotgammon.domain;
 
+import hotgammon.domain.common.Color;
+import hotgammon.domain.common.Game;
+import hotgammon.domain.common.GameImpl;
+import hotgammon.domain.common.Location;
+import hotgammon.domain.variants.AlphaMonMoveStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

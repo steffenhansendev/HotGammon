@@ -1,4 +1,4 @@
-package hotgammon.domain;
+package hotgammon.domain.common;
 /** This interface encapsulate all responsibilites of
     a Backgammon game. Please consult the book's
     project part for further descriptions.

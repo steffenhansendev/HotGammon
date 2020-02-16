@@ -1,4 +1,4 @@
-package hotgammon.domain;
+package hotgammon.domain.common;
 
 import java.util.HashMap;
 import java.util.Map;

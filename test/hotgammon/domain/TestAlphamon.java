@@ -1,4 +1,8 @@
 package hotgammon.domain;
+import hotgammon.domain.common.Color;
+import hotgammon.domain.common.Game;
+import hotgammon.domain.common.GameImpl;
+import hotgammon.domain.variants.AlphaMonMoveStrategy;
 import org.junit.*;
 import static org.junit.Assert.*;
 /** Testing skeleton for AlphaMon.

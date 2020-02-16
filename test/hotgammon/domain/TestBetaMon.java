@@ -1,5 +1,9 @@
 package hotgammon.domain;
 
+import hotgammon.domain.common.Game;
+import hotgammon.domain.common.GameImpl;
+import hotgammon.domain.common.Location;
+import hotgammon.domain.variants.BetaMonMoveStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -104,5 +108,4 @@ public class TestBetaMon {
         game.nextTurn();  //[1, 2] & Black
         assertFalse("Moving black checker from R1 to R7 must be rejected because distance travelled is too far", game.move(Location.R1, Location.R7));
     }
-
 }
