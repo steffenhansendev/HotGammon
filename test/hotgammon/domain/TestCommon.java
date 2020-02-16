@@ -8,6 +8,7 @@ import static org.junit.Assert.assertFalse;
 
 public class TestCommon {
     private Game game;
+
     @Before
     public void setup() {
         game = new GameImpl(new AlphaMonMoveStrategy());
@@ -154,5 +155,23 @@ public class TestCommon {
         game.move(Location.R1, Location.R2);
         game.move(Location.R1, Location.R3);
         assertEquals("Total number of checkers must be 30 black moves has been exhausted", 30, totalNumberOfCheckers);
+    }
+
+    @Test
+    public void movesLeftShouldBe0AfterMoving2CheckersUsingSmallestDiceValueFirstIn1stTurn() {
+        game.newGame();
+        game.nextTurn();
+        assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
+        assertTrue("It must be valid for black to move a checker from R1 to R3 in first turn", game.move(Location.R1, Location.R3));
+        assertEquals("Number of moves left must be 0 when black has exhausted the moves", 0, game.getNumberOfMovesLeft());
+    }
+
+    @Test
+    public void movesLeftShouldBe0AfterMoving2CheckersUsingLargestDiceValueFirstIn1stTurn() {
+        game.newGame();
+        game.nextTurn();
+        assertTrue("It must be valid for black to move a checker from R1 to R3 in first turn", game.move(Location.R1, Location.R3));
+        assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
+        assertEquals("Number of moves left must be 0 when black has exhausted the moves", 0, game.getNumberOfMovesLeft());
     }
 }
