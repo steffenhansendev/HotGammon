@@ -37,14 +37,22 @@ public class GameImpl implements Game {
     }
 
     public boolean move(Location from, Location to) {
+        //Validate move
         int indexOfValidDice = moveStrategy.validateMoveWithIndexOfValidDice(from, to, checkerColor, checkerCount, playerInTurn, diceValuesLeft);
         if(indexOfValidDice == -1) {
             return false;
         }
+
+        //Move the checker(s)
         checkerCount.put(from, (int) checkerCount.get(from) - 1);
         checkerCount.put(to, (int) checkerCount.get(to) + 1);
         checkerColor.put(to, checkerColor.get(from));
-        if(diceValuesLeft.length == 1) {
+
+        //Update unused dice for this turn
+        if(diceValuesLeft.length == 0) {
+            return false;
+        }
+        else if(diceValuesLeft.length == 1) {
             diceValuesLeft = new int[0];
         } else {
             indexOfValidDice += 1;

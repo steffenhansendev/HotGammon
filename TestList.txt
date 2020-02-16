@@ -25,12 +25,12 @@ AlphaMon
 [x] it is invalid to move red checker when black is in turn
 [x] it is invalid to move black checker when red is in turn
 [X] it is invalid to move black checker from when moves have been exhausted
+[x] total number of checkers must is 30 initially and after moving checkers
 
 BetaMon
 [x] after moving two black checkers, using largest dice value first, the number of moves left is 0
 [x] after moving two black checkers, using smallest dice value first, the number of moves left is 0
 [x] dice values returned from diceValuesLeft are sorted in growing order in every turn
-[x] total number of checkers must is 30 initially and after moving checkers
 [x] black checkers can not be moved further away from black bear off
 [x] red checkers can not be moved further away from red bear off
 [x] black checkers can not be moved to their current locations

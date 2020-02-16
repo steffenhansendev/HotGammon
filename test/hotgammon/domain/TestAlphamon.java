@@ -214,6 +214,54 @@ public class TestAlphamon {
   }
 
   @Test
+  public void movingBlackCheckerFromR1ToR6ShouldBeRejectedBecauseThisLocationIsRed() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] & Black
+    game.nextTurn();  //[3, 4] & Red
+    game.nextTurn();  //[5, 6] & Black
+    assertFalse("Moving black checker from R1 to R6 must be rejected because R6 is red", game.move(Location.R1, Location.R6));
+  }
+
+  @Test
+  public void movingRedCheckerShouldBeRejectedWhenBlackIsInTurn() {
+    game.newGame();
+    game.nextTurn();
+    assertFalse("Moving red checker from B1 to B2 must be rejected because black is in turn", game.move(Location.B1, Location.B2));
+  }
+
+  @Test
+  public void movingBlackCheckerShouldBeRejectedWhenRedIsInTurn() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] & Black
+    game.nextTurn();  //[3, 4] & Red
+    assertFalse("Moving black checker from R1 to R4 must be rejected because red is in turn", game.move(Location.R1, Location.R2));
+  }
+
+  @Test
+  public void movingBlackCheckerShouldBeRejectedWhenMovesHaveBeenExhausted() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] & Black
+    game.move(Location.R1, Location.R3);
+    game.move(Location.R3, Location.R4);
+    assertEquals("Number of moves left must be 0 after moving black checker(s) twice", 0, game.getNumberOfMovesLeft());
+    assertFalse("Moving black checker from R4 to R5 must be rejected because this checker has already been moved twice", game.move(Location.R4, Location.R5));
+  }
+
+  @Test
+  public void totalNumberOfCheckersShouldBe30() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] & Black
+    int totalNumberOfCheckers = 0;
+    for(Location l : Location.values()) {
+      totalNumberOfCheckers += game.getCount(l);
+    }
+    assertEquals("Total number of checkers must be 30 initially", 30, totalNumberOfCheckers);
+    game.move(Location.R1, Location.R2);
+    game.move(Location.R1, Location.R3);
+    assertEquals("Total number of checkers must be 30 black moves has been exhausted", 30, totalNumberOfCheckers);
+  }
+/*
+  @Test
   public void movesLeftShouldBe0AfterMoving2CheckersUsingSmallestDiceValueFirstIn1stTurn() {
     game.newGame();
     game.nextTurn();
@@ -284,54 +332,6 @@ public class TestAlphamon {
   }
 
   @Test
-  public void movingBlackCheckerFromR1ToR6ShouldBeRejectedBecauseThisLocationIsRed() {
-    game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    game.nextTurn();  //[3, 4] & Red
-    game.nextTurn();  //[5, 6] & Black
-    assertFalse("Moving black checker from R1 to R6 must be rejected because R6 is red", game.move(Location.R1, Location.R6));
-  }
-
-  @Test
-  public void movingRedCheckerShouldBeRejectedWhenBlackIsInTurn() {
-    game.newGame();
-    game.nextTurn();
-    assertFalse("Moving red checker from B1 to B2 must be rejected because black is in turn", game.move(Location.B1, Location.B2));
-  }
-
-  @Test
-  public void movingBlackCheckerShouldBeRejectedWhenRedIsInTurn() {
-    game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    game.nextTurn();  //[3, 4] & Red
-    assertFalse("Moving black checker from R1 to R4 must be rejected because red is in turn", game.move(Location.R1, Location.R2));
-  }
-
-  @Test
-  public void movingBlackCheckerShouldBeRejectedWhenMovesHaveBeenExhausted() {
-    game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    game.move(Location.R1, Location.R3);
-    game.move(Location.R3, Location.R4);
-    assertEquals("Number of moves left must be 0 after moving black checker(s) twice", 0, game.getNumberOfMovesLeft());
-    assertFalse("Moving black checker from R4 to R5 must be rejected because this checker has already been moved twice", game.move(Location.R4, Location.R5));
-  }
-
-  @Test
-  public void totalNumberOfCheckersShouldBe30() {
-    game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    int totalNumberOfCheckers = 0;
-    for(Location l : Location.values()) {
-      totalNumberOfCheckers += game.getCount(l);
-    }
-    assertEquals("Total number of checkers must be 30 initially", 30, totalNumberOfCheckers);
-    game.move(Location.R1, Location.R2);
-    game.move(Location.R1, Location.R3);
-    assertEquals("Total number of checkers must be 30 black moves has been exhausted", 30, totalNumberOfCheckers);
-  }
-
-  @Test
   public void movingBlackCheckerFromR12toR11ShouldBeRejected() {
     game.newGame();
     game.nextTurn();  //[1, 2] & Black
@@ -361,5 +361,5 @@ public class TestAlphamon {
     game.nextTurn();  //[3, 4] & Red
     assertFalse("Moving black checker from B1 to B1 must be rejected because destination is the same as origin",
             game.move(Location.B1, Location.B1));
-  }
+  }*/
 }
