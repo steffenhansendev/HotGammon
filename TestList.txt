@@ -27,6 +27,9 @@
 [x] total number of checkers must is 30 initially and after moving checkers
 [x] after moving two black checkers, using largest dice value first, the number of moves left is 0
 [x] after moving two black checkers, using smallest dice value first, the number of moves left is 0
+[x] move checker further than dice
+[x] move checker shorter than dice
+[x] move checker backwards
 
 [x] dice values returned from diceValuesLeft are sorted in growing order in every turn
 [x] black checkers can not be moved further away from black bear off

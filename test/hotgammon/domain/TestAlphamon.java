@@ -2,6 +2,7 @@ package hotgammon.domain;
 import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
+import hotgammon.domain.common.Location;
 import hotgammon.domain.variants.AlphaMonMoveStrategy;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -120,5 +121,46 @@ public class TestAlphamon {
     game.nextTurn(); //5th turn
     game.nextTurn(); //6th turn
     assertEquals("Red player should have won the game after 6th turn", Color.NONE, game.winner());
+  }
+
+  @Test
+  public void blackPlayerMovingCheckerFromR1toR7ShouldBeValidIn1stTurn() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] => Black
+    assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
+    assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R7));
+    assertEquals("Number of checkers on R7 must be 1 after black moves a checker here", 1, game.getCount(Location.R7));
+    assertEquals("Color of checker(s) on R7 must be black after black moves a checker here", Color.BLACK, game.getColor(Location.R7));
+    assertEquals("Number of checkers on R1 must be 1 after black moves a checker from here", 1, game.getCount(Location.R1));
+    assertEquals("Color of checker(s) on R1 must be black after black moves a checker from here", Color.BLACK, game.getColor(Location.R1));
+    assertEquals("Number of moves left must be 1 after black has exhausted 1 of 2 moves", 1, game.getNumberOfMovesLeft());
+  }
+
+  @Test
+  public void blackPlayerMovingCheckerFromR1toR2ShouldBeValidIn3rdTurn() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
+    game.nextTurn();  //[5, 6] => Black
+    assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
+    assertTrue("It must be valid for black to move a checker from R1 to R2 in third turn", game.move(Location.R1, Location.R2));
+    assertEquals("Number of checkers on R2 must be 1 after black moves a checker here", 1, game.getCount(Location.R2));
+    assertEquals("Color of checker(s) on R2 must be black after black moves a checker here", Color.BLACK, game.getColor(Location.R2));
+    assertEquals("Number of checkers on R1 must be 1 after black moves a checker from here", 1, game.getCount(Location.R1));
+    assertEquals("Color of checker(s) on R1 must be black after black moves a checker from here", Color.BLACK, game.getColor(Location.R1));
+    assertEquals("Number of moves left must be 1 after black has exhausted 1 of 2 moves", 1, game.getNumberOfMovesLeft());
+  }
+
+  @Test
+  public void blackPlayerMovingCheckerFromR12toR2ShouldBeValidIn1stTurn() {
+    game.newGame();
+    game.nextTurn();  //[1, 2] => Black
+    assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
+    assertTrue("It must be valid for black to move a checker from R12 to R2 in first turn", game.move(Location.R12, Location.R2));
+    assertEquals("Number of checkers on R7 must be 1 after black moves a checker here", 1, game.getCount(Location.R2));
+    assertEquals("Color of checker(s) on R7 must be black after black moves a checker here", Color.BLACK, game.getColor(Location.R2));
+    assertEquals("Number of checkers on R1 must be 4 after black moves a checker from here", 4, game.getCount(Location.R12));
+    assertEquals("Color of checker(s) on R1 must be black after black moves a checker from here", Color.BLACK, game.getColor(Location.R12));
+    assertEquals("Number of moves left must be 1 after black has exhausted 1 of 2 moves", 1, game.getNumberOfMovesLeft());
   }
 }
