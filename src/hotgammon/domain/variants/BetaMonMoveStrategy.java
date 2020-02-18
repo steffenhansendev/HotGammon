@@ -6,15 +6,18 @@ import hotgammon.domain.common.Location;
 import hotgammon.domain.common.MoveStrategy;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
-    public boolean validateMoveAndUpdateDiceValuesLeft(Location from, Location to, Game game) {
-        int signedDistanceOfMove = Location.distance(from, to);
+    private int signedDistanceOfMove = -1;
+    private int indexOfValidDice = -1;
+
+    public boolean isMoveValid(Location from, Location to, Game game) {
+        signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
                 game.getPlayerInTurn() == Color.BLACK && signedDistanceOfMove < 0 || game.getPlayerInTurn() == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
             return false;
         }
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
-        int indexOfValidDice = -1;
+        indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
             if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
@@ -24,6 +27,14 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         if(isDistanceNotAvailable) {
             return false;
         }
+        return true;
+    }
+
+    public boolean resolveHit(Location from, Location to, Game game) {
+        return false;
+    }
+
+    public void updateDice(Location from, Location to, Game game) {
         if(game.getNumberOfMovesLeft() == 1) {
             game.setDiceValuesLeft(new int[0]);
         } else {
@@ -31,6 +42,5 @@ public class BetaMonMoveStrategy implements MoveStrategy {
             indexOfRemainingDice = indexOfRemainingDice % game.diceValuesLeft().length;
             game.setDiceValuesLeft(new int[]{game.diceValuesLeft()[indexOfRemainingDice]});
         }
-        return true;
     }
 }
