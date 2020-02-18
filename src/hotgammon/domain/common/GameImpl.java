@@ -37,7 +37,6 @@ public class GameImpl implements Game {
     }
 
     public boolean move(Location from, Location to) {
-
         boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
         if(checkerIsNotOwnedByPlayerInTurn) {
             return false;

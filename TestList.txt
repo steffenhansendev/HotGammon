@@ -41,6 +41,4 @@
 [] red can bar black blot
 [] black can bar red blot
 
-
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
-TODO: REMOVE ADDITIONS TO GAME INTERFACE
