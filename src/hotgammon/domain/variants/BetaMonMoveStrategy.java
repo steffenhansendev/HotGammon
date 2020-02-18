@@ -1,9 +1,6 @@
 package hotgammon.domain.variants;
 
-import hotgammon.domain.common.Color;
-import hotgammon.domain.common.Game;
-import hotgammon.domain.common.Location;
-import hotgammon.domain.common.MoveStrategy;
+import hotgammon.domain.common.*;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
     private int signedDistanceOfMove = -1;
@@ -36,11 +33,11 @@ public class BetaMonMoveStrategy implements MoveStrategy {
 
     public void updateDice(Location from, Location to, Game game) {
         if(game.getNumberOfMovesLeft() == 1) {
-            game.setDiceValuesLeft(new int[0]);
+            ((GameImpl) game).setDiceValuesLeft(new int[0]);
         } else {
             int indexOfRemainingDice = indexOfValidDice + 1;
             indexOfRemainingDice = indexOfRemainingDice % game.diceValuesLeft().length;
-            game.setDiceValuesLeft(new int[]{game.diceValuesLeft()[indexOfRemainingDice]});
+            ((GameImpl) game).setDiceValuesLeft(new int[]{game.diceValuesLeft()[indexOfRemainingDice]});
         }
     }
 }
