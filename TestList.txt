@@ -41,6 +41,7 @@
 [x] red can bar black blot
 [x] black can bar red blot
 
-[] black can not move checkers from elsewhere when black checkers are barred
+[x] black can not move checkers from elsewhere when black checkers are barred
+[x] red can not move checkers from elsewhere when red checkers are barred
 
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM

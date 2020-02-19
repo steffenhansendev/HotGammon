@@ -313,4 +313,20 @@ public class TestBetaMon {
         game.nextTurn();    //[5, 6] & Black
         assertFalse("Moving black checker from elsewhere must be rejected because black checkers are barred", game.move(Location.R12, Location.B8));
     }
+
+    @Test
+    public void movingRedCheckerFromElsewhereShouldBeRejectedWhenRedCheckersAreBarred() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] & Black
+        assertTrue(game.move(Location.R1, Location.R2));
+        assertTrue(game.move(Location.R1, Location.R3));
+        game.nextTurn();    //[3, 4] & Red
+        assertTrue(game.move(Location.B1, Location.B4));
+        assertTrue(game.move(Location.B12, Location.R9));
+        game.nextTurn();    //[5, 6] & Black
+        assertTrue(game.move(Location.B6, Location.B1));
+        assertTrue(game.move(Location.R12, Location.B7));
+        game.nextTurn();    //[1, 2] & Red
+        assertFalse("Moving red checker from elsewhere must be rejected because red checkers are barred", game.move(Location.R8, Location.B9));
+    }
 }
