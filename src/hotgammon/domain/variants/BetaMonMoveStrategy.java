@@ -2,6 +2,7 @@ package hotgammon.domain.variants;
 
 import hotgammon.domain.common.*;
 
+import java.sql.Blob;
 import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
@@ -35,14 +36,12 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         if(isToBlot) {
             Map<Location, Integer> checkerCount = ((GameImpl) game).getCheckerCount();
             Map<Location, Color> checkerColor = ((GameImpl) game).getCheckerColor();
-
-            //Move blot to bar location
-            checkerCount.put(Location.B_BAR, checkerCount.get(Location.B_BAR) + 1);
-
-            //Move hitting checker to blot location
-            checkerColor.put(to, Color.RED);
+            Color colorOfBlot = game.getColor(to);
+            Color colorOfHitter = colorOfBlot == Color.BLACK ? Color.RED : Color.BLACK;
+            Location locationOfBlotsBar = colorOfBlot == Color.BLACK ? Location.B_BAR : Location.R_BAR;
+            checkerCount.put(locationOfBlotsBar, checkerCount.get(locationOfBlotsBar) + 1);
+            checkerColor.put(to, colorOfHitter);
             checkerCount.put(from, checkerCount.get(from) - 1 );
-
             return true;
         }
         return false;

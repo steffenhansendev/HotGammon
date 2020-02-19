@@ -280,7 +280,24 @@ public class TestBetaMon {
         assertTrue(game.move(Location.R1, Location.R3));
         game.nextTurn();    //[3, 4] & Red
         assertTrue("Barring black blot at R3 with red checker from R6 must be allowed", game.move(Location.R6, Location.R3));
-        assertEquals("Color of checker(s) at R6  must be red after red checker has barred black checker her", Color.RED, game.getColor(Location.R3));
-        assertEquals("Color of number of checkers at R6  must be 1 after red checker has barred black checker here", 1, game.getCount(Location.R3));
+        assertEquals("Number of checkers at B_BAR  must be 1 after red checker has barred black", 1, game.getCount(Location.B_BAR));
+        assertEquals("Color of checker(s) at R6  must be red after red checker has barred black checker here", Color.RED, game.getColor(Location.R3));
+        assertEquals("Number of checkers at R6  must be 1 after red checker has barred black checker here", 1, game.getCount(Location.R3));
+    }
+
+    @Test
+    public void movingBlackCheckerToBlotRedCheckerShouldBarRedChecker() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] & Black
+        assertTrue(game.move(Location.R1, Location.R2));
+        assertTrue(game.move(Location.R1, Location.R3));
+        game.nextTurn();    //[3, 4] & Red
+        assertTrue(game.move(Location.B1, Location.B4));
+        assertTrue(game.move(Location.B12, Location.R9));
+        game.nextTurn();    //[5, 6] & Black
+        assertTrue("Barring red blot at B1 with black checker from B6 must be allowed", game.move(Location.B6, Location.B1));
+        assertEquals("Number of checkers at R_BAR  must be 1 after black checker has barred red", 1, game.getCount(Location.R_BAR));
+        assertEquals("Color of checker(s) at B1  must be black after black checker has barred red checker here", Color.BLACK, game.getColor(Location.B1));
+        assertEquals("Number of checkers at B1  must be 1 after black checker has barred red checker here", 1, game.getCount(Location.B1));
     }
 }
