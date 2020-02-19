@@ -6,16 +6,29 @@ import java.sql.Blob;
 import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
+
     private int signedDistanceOfMove = -1;
     private int indexOfValidDice = -1;
 
     public boolean isMoveValid(Location from, Location to, Game game) {
+
+        Color colorOfPlayerInTurn = game.getPlayerInTurn();
+
+        Location barOfPlayerInTurn = colorOfPlayerInTurn == Color.BLACK ? Location.B_BAR : Location.R_BAR;
+
+        boolean areCheckersBarred = game.getCount(barOfPlayerInTurn) > 0;
+
+        if(areCheckersBarred) {
+            return false;
+        }
+
         signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
-                game.getPlayerInTurn() == Color.BLACK && signedDistanceOfMove < 0 || game.getPlayerInTurn() == Color.RED && signedDistanceOfMove > 0;
+                colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
             return false;
         }
+
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
         indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
@@ -27,6 +40,7 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         if(isDistanceNotAvailable) {
             return false;
         }
+
         return true;
     }
 

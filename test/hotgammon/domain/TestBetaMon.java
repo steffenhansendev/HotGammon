@@ -300,4 +300,17 @@ public class TestBetaMon {
         assertEquals("Color of checker(s) at B1  must be black after black checker has barred red checker here", Color.BLACK, game.getColor(Location.B1));
         assertEquals("Number of checkers at B1  must be 1 after black checker has barred red checker here", 1, game.getCount(Location.B1));
     }
+
+    @Test
+    public void movingBlackCheckerFromElsewhereShouldBeRejectedWhenBlackCheckersAreBarred() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] & Black
+        assertTrue(game.move(Location.R1, Location.R2));
+        assertTrue(game.move(Location.R1, Location.R3));
+        game.nextTurn();    //[3, 4] & Red
+        assertTrue(game.move(Location.R6, Location.R3));
+        assertTrue(game.move(Location.B1, Location.B5));
+        game.nextTurn();    //[5, 6] & Black
+        assertFalse("Moving black checker from elsewhere must be rejected because black checkers are barred", game.move(Location.R12, Location.B8));
+    }
 }
