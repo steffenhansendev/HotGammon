@@ -100,6 +100,14 @@ public class GameImpl implements Game {
         this.diceValuesLeft = diceValuesLeft;
     }
 
+    public Map<Location, Integer> getCheckerCount() {
+        return checkerCount;
+    }
+
+    public Map<Location, Color> getCheckerColor() {
+        return checkerColor;
+    }
+
     //PRIVATE DELEGATIONS
     private void rollTheDice() {
         switch(diceRolled[0]) {
