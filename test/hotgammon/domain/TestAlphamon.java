@@ -139,9 +139,9 @@ public class TestAlphamon {
   @Test
   public void movingBlackCheckerFromR1ToR6ShouldBeRejectedBecauseThisLocationIsRed() {
     game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    game.nextTurn();  //[3, 4] & Red
-    game.nextTurn();  //[5, 6] & Black
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
+    game.nextTurn();  //[5, 6] => Black
     assertFalse("Moving black checker from R1 to R6 must be rejected because R6 is red", game.move(Location.R1, Location.R6));
   }
 
@@ -155,15 +155,15 @@ public class TestAlphamon {
   @Test
   public void movingBlackCheckerShouldBeRejectedWhenRedIsInTurn() {
     game.newGame();
-    game.nextTurn();  //[1, 2] & Black
-    game.nextTurn();  //[3, 4] & Red
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
     assertFalse("Moving black checker from R1 to R4 must be rejected because red is in turn", game.move(Location.R1, Location.R2));
   }
 
   @Test
   public void movingBlackCheckerShouldBeRejectedWhenMovesHaveBeenExhausted() {
     game.newGame();
-    game.nextTurn();  //[1, 2] & Black
+    game.nextTurn();  //[1, 2] => Black
     game.move(Location.R1, Location.R3);
     game.move(Location.R3, Location.R4);
     assertEquals("Number of moves left must be 0 after moving black checker(s) twice", 0, game.getNumberOfMovesLeft());
@@ -173,7 +173,7 @@ public class TestAlphamon {
   @Test
   public void totalNumberOfCheckersShouldBe30() {
     game.newGame();
-    game.nextTurn();  //[1, 2] & Black
+    game.nextTurn();  //[1, 2] => Black
     int totalNumberOfCheckers = 0;
     for(Location l : Location.values()) {
       totalNumberOfCheckers += game.getCount(l);

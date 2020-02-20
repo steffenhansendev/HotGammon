@@ -25,6 +25,16 @@ public class BetaMonMoveStrategy implements MoveStrategy {
             }
         }
 
+
+        Location barOfOpponent = barOfPlayerInTurn == Location.B_BAR ? Location.R_BAR : Location.B_BAR;
+
+        boolean isMoveToOpponentBar = to == barOfOpponent;
+
+        if(isMoveToOpponentBar) {
+            return false;
+        }
+
+
         signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
                 colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;

@@ -43,12 +43,8 @@
 [x] black can move checkers from bar to red's inner table
 [x] red can move checkers from bar to black's inner table
 
-<<<<<<< HEAD
-
-[] checkers can not be moved to bar manually
+[x] checkers can not be moved to bar manually
 [] checkers can not be born of
 
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
-=======
-TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
->>>>>>> BetaMon
+
