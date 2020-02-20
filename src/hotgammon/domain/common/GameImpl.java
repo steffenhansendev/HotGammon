@@ -50,7 +50,7 @@ public class GameImpl implements Game {
             return false;
         }
 
-        boolean isMoveHit = checkerColor.get(from) != checkerColor.get(to) && checkerColor.get(to) != Color.NONE;
+        boolean isMoveHit = checkerColor.get(from) != checkerColor.get(to) && checkerColor.get(to) != Color.NONE && (int) checkerCount.get(to) > 0;
 
         boolean hasCheckersBeenMoved = false;
 

@@ -45,6 +45,5 @@
 [x] checkers can not be moved to bar manually
 [X checkers can not be born of
 
-TODO: VERIFY SPECIAL MOVES OF ALPHAMON
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
 
