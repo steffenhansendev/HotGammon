@@ -431,6 +431,6 @@ public class TestBetaMon {
         game.nextTurn();    //[3, 4] => Red
         game.nextTurn();    //[5, 6] => Black
         game.nextTurn();    //[1, 2] => Red
-        assertFalse("Bearing off black checker must be rejected because inner table has not been filled", game.move(Location.B6, Location.R_BEAR_OFF));
+        assertFalse("Bearing off black checker must be rejected because inner table has not been filled", game.move(Location.B1, Location.B_BEAR_OFF));
     }
 }
