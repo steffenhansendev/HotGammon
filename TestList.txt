@@ -36,5 +36,7 @@
 [x] rejection of moves with a distance that has not been rolled
 
 
+[] checkers can not be moved to bar manually
+[] checkers can not be born of
 
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
