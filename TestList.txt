@@ -30,17 +30,14 @@
 [x] move checker further than dice
 [x] move checker shorter than dice
 [x] move checker backwards
-
 [x] dice values returned from diceValuesLeft are sorted in growing order in every turn
 [x] black checkers can not be moved further away from black bear off
 [x] red checkers can not be moved further away from red bear off
 [x] black checkers can not be moved to their current locations
 [x] red checkers can not be moved to their current locations
 [x] rejection of moves with a distance that has not been rolled
-
 [x] red can bar black blot
 [x] black can bar red blot
-
 [x] black can not move checkers from elsewhere when black checkers are barred
 [x] red can not move checkers from elsewhere when red checkers are barred
 [x] black can move checkers from bar to red's inner table
