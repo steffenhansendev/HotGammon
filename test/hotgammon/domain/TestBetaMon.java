@@ -329,4 +329,34 @@ public class TestBetaMon {
         game.nextTurn();    //[1, 2] & Red
         assertFalse("Moving red checker from elsewhere must be rejected because red checkers are barred", game.move(Location.R8, Location.B9));
     }
+
+    @Test
+    public void movingBarredBlackCheckerToRedInnerTableShouldBeAllowedWithAdequateRoll() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] & Black
+        assertTrue(game.move(Location.R1, Location.R2));
+        assertTrue(game.move(Location.R1, Location.R3));
+        game.nextTurn();    //[3, 4] & Red
+        assertTrue(game.move(Location.R6, Location.R3));
+        assertTrue(game.move(Location.B1, Location.B5));
+        game.nextTurn();    //[5, 6] & Black
+        assertTrue ("Moving black checker from bar to red's inner table must be allowed", game.move(Location.B_BAR, Location.R5));
+    }
+
+    @Test
+    public void movingBarredRedCheckerToBlackInnerTableShouldBeAllowedWithAdequateRoll() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] & Black
+        assertTrue(game.move(Location.R1, Location.R2));
+        assertTrue(game.move(Location.R1, Location.R3));
+        game.nextTurn();    //[3, 4] & Red
+        assertTrue(game.move(Location.B1, Location.B4));
+        assertTrue(game.move(Location.B12, Location.R9));
+        game.nextTurn();    //[5, 6] & Black
+        assertTrue(game.move(Location.B6, Location.B1));
+        assertTrue(game.move(Location.R12, Location.B7));
+        game.nextTurn();    //[1, 2] & Red
+        assertTrue("Moving red checker from bar to black's inner table must be allowed", game.move(Location.R_BAR, Location.B2));
+    }
+
 }

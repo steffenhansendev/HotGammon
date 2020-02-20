@@ -19,7 +19,10 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         boolean areCheckersBarred = game.getCount(barOfPlayerInTurn) > 0;
 
         if(areCheckersBarred) {
-            return false;
+            boolean isMoveFromBar = from == barOfPlayerInTurn;
+            if(!isMoveFromBar){
+                return false;
+            }
         }
 
         signedDistanceOfMove = Location.distance(from, to);

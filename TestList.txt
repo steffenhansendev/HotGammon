@@ -43,5 +43,7 @@
 
 [x] black can not move checkers from elsewhere when black checkers are barred
 [x] red can not move checkers from elsewhere when red checkers are barred
+[x] black can move checkers from bar to red's inner table
+[x] red can move checkers from bar to black's inner table
 
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM

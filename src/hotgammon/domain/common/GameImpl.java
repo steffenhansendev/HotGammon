@@ -152,6 +152,8 @@ public class GameImpl implements Game {
             checkerCount.put(l, 0);
             checkerColor.put(l, Color.NONE);
         }
+        introduceCheckersAt(Location.B_BAR, 0, Color.BLACK);
+        introduceCheckersAt(Location.R_BAR, 0, Color.RED);
         introduceCheckersAt(Location.B12, 5, Color.RED);
         introduceCheckersAt(Location.B8, 3, Color.BLACK);
         introduceCheckersAt(Location.B6, 5, Color.BLACK);
