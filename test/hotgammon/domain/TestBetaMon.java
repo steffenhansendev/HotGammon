@@ -396,4 +396,41 @@ public class TestBetaMon {
         game.nextTurn();    //[5, 6] => Red
         assertFalse("Manually moving checker to bar must be rejected", game.move(Location.R6, Location.B_BAR));
     }
+
+    @Test
+    public void blackCanNotMoveCheckerToBlackBearOff() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] => Black
+        game.nextTurn();    //[3, 4] => Red
+        game.nextTurn();    //[5, 6] => Black
+        assertFalse("Bearing off black checker must be rejected because inner table has not been filled", game.move(Location.B6, Location.B_BEAR_OFF));
+    }
+
+    @Test
+    public void blackCanNotMoveCheckerToRedBearOff() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] => Black
+        assertTrue(game.move(Location.B6, Location.B5));
+        game.nextTurn();    //[3, 4] => Red
+        game.nextTurn();    //[5, 6] => Black
+        assertFalse("Bearing off black checker must be rejected because bear off is red", game.move(Location.B5, Location.B_BEAR_OFF));
+    }
+
+    @Test
+    public void redCanNotMoveCheckerToRedBearOff() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] => Black
+        game.nextTurn();    //[3, 4] => Red
+        assertFalse("Bearing off red checker must be rejected because inner table has not been filled", game.move(Location.B1, Location.R_BEAR_OFF));
+    }
+
+    @Test
+    public void redCanNotMoveCheckerToBlackBearOff() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] => Black
+        game.nextTurn();    //[3, 4] => Red
+        game.nextTurn();    //[5, 6] => Black
+        game.nextTurn();    //[1, 2] => Red
+        assertFalse("Bearing off black checker must be rejected because inner table has not been filled", game.move(Location.B6, Location.R_BEAR_OFF));
+    }
 }

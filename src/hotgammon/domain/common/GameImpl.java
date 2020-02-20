@@ -12,6 +12,8 @@ public class GameImpl implements Game {
     private Map checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
     private MoveStrategy moveStrategy;
+    private boolean hasRedInnerTableBeenFilled = false;
+    private boolean hasBlackInnerTableBeenFilled = false;
 
     public GameImpl(MoveStrategy moveStrategy){
         this.moveStrategy = moveStrategy;
@@ -107,6 +109,14 @@ public class GameImpl implements Game {
 
     public Map<Location, Color> getCheckerColor() {
         return checkerColor;
+    }
+
+    public boolean getHasBlackInnerTableBeenFilled() {
+        return hasBlackInnerTableBeenFilled;
+    }
+
+    public boolean getHasRedInnerTableBeenFilled() {
+        return hasRedInnerTableBeenFilled;
     }
 
     //PRIVATE DELEGATIONS

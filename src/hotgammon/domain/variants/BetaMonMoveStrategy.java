@@ -24,8 +24,6 @@ public class BetaMonMoveStrategy implements MoveStrategy {
                 return false;
             }
         }
-
-
         Location barOfOpponent = barOfPlayerInTurn == Location.B_BAR ? Location.R_BAR : Location.B_BAR;
 
         boolean isMoveToOpponentBar = to == barOfOpponent;
@@ -34,6 +32,15 @@ public class BetaMonMoveStrategy implements MoveStrategy {
             return false;
         }
 
+        boolean isMoveBearOff = to == Location.B_BEAR_OFF || to == Location.R_BEAR_OFF;
+
+
+        boolean isMovePrematureBearOff = isMoveBearOff &&
+                (colorOfPlayerInTurn == Color.BLACK && !((GameImpl) game).getHasBlackInnerTableBeenFilled() ||
+                        colorOfPlayerInTurn == Color.RED && !((GameImpl) game).getHasRedInnerTableBeenFilled());
+        if(isMovePrematureBearOff) {
+            return false;
+        }
 
         signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =

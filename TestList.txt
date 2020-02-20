@@ -42,9 +42,9 @@
 [x] red can not move checkers from elsewhere when red checkers are barred
 [x] black can move checkers from bar to red's inner table
 [x] red can move checkers from bar to black's inner table
-
 [x] checkers can not be moved to bar manually
-[] checkers can not be born of
+[X checkers can not be born of
 
+TODO: VERIFY SPECIAL MOVES OF ALPHAMON
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
 
