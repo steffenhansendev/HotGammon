@@ -37,27 +37,36 @@ public class GameImpl implements Game {
     }
 
     public boolean move(Location from, Location to) {
-        //Validate move for all variants
-        boolean isToOccupiedByOpponent =
-                checkerColor.get(from) != checkerColor.get(to) &&
-                        checkerColor.get(to) != Color.NONE;
-        if(isToOccupiedByOpponent) {
+
+        boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
+        if(checkerIsNotOwnedByPlayerInTurn) {
             return false;
         }
-        boolean checkerIsOwnedByPlayerInTurn = playerInTurn == checkerColor.get(from);
-        if(!checkerIsOwnedByPlayerInTurn) {
+
+        boolean isMoveValid = moveStrategy.isMoveValid(from, to, this);
+        if(!isMoveValid) {
             return false;
         }
-        //Validate move and update dice values left for specific variant
-        boolean isMoveValidAndHasDiceValuesLeftBeenUpdated = moveStrategy.validateMoveAndUpdateDiceValuesLeft(from, to, this);
-        if(!isMoveValidAndHasDiceValuesLeftBeenUpdated) {
-            return false;
+
+        boolean isMoveHit = checkerColor.get(from) != checkerColor.get(to) && checkerColor.get(to) != Color.NONE;
+
+        boolean hasCheckersBeenMoved = false;
+
+        if(isMoveHit) {
+            hasCheckersBeenMoved = moveStrategy.resolveHit(from, to, this);
+        } else {
+            checkerCount.put(from, (int) checkerCount.get(from) - 1);
+            checkerCount.put(to, (int) checkerCount.get(to) + 1);
+            checkerColor.put(to, checkerColor.get(from));
+            hasCheckersBeenMoved = true;
         }
-        //Move the checker(s)
-        checkerCount.put(from, (int) checkerCount.get(from) - 1);
-        checkerCount.put(to, (int) checkerCount.get(to) + 1);
-        checkerColor.put(to, checkerColor.get(from));
-        return true;
+
+        if(hasCheckersBeenMoved) {
+            moveStrategy.updateDice(from, to, this);
+            return true;
+        }
+
+        return false;
     }
 
     public Color getPlayerInTurn() {
@@ -90,6 +99,14 @@ public class GameImpl implements Game {
 
     public void setDiceValuesLeft(int[] diceValuesLeft) {
         this.diceValuesLeft = diceValuesLeft;
+    }
+
+    public Map<Location, Integer> getCheckerCount() {
+        return checkerCount;
+    }
+
+    public Map<Location, Color> getCheckerColor() {
+        return checkerColor;
     }
 
     //PRIVATE DELEGATIONS
@@ -136,6 +153,8 @@ public class GameImpl implements Game {
             checkerCount.put(l, 0);
             checkerColor.put(l, Color.NONE);
         }
+        introduceCheckersAt(Location.B_BAR, 0, Color.BLACK);
+        introduceCheckersAt(Location.R_BAR, 0, Color.RED);
         introduceCheckersAt(Location.B12, 5, Color.RED);
         introduceCheckersAt(Location.B8, 3, Color.BLACK);
         introduceCheckersAt(Location.B6, 5, Color.BLACK);

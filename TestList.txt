@@ -27,16 +27,28 @@
 [x] total number of checkers must is 30 initially and after moving checkers
 [x] after moving two black checkers, using largest dice value first, the number of moves left is 0
 [x] after moving two black checkers, using smallest dice value first, the number of moves left is 0
-
+[x] move checker further than dice
+[x] move checker shorter than dice
+[x] move checker backwards
 [x] dice values returned from diceValuesLeft are sorted in growing order in every turn
 [x] black checkers can not be moved further away from black bear off
 [x] red checkers can not be moved further away from red bear off
 [x] black checkers can not be moved to their current locations
 [x] red checkers can not be moved to their current locations
 [x] rejection of moves with a distance that has not been rolled
+[x] red can bar black blot
+[x] black can bar red blot
+[x] black can not move checkers from elsewhere when black checkers are barred
+[x] red can not move checkers from elsewhere when red checkers are barred
+[x] black can move checkers from bar to red's inner table
+[x] red can move checkers from bar to black's inner table
 
+<<<<<<< HEAD
 
 [] checkers can not be moved to bar manually
 [] checkers can not be born of
 
 TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
+=======
+TODO: AFTER COMPLETION OF BETAMON: UML CLASS DIAGRAM
+>>>>>>> BetaMon
