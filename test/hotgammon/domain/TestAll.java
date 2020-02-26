@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
         {
                 TestLocation.class,
                 TestAlphamon.class,
-                TestBetaMon.class
+                TestBetaMon.class,
+                TestGammaMon.class
         }
 )
 

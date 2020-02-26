@@ -8,8 +8,8 @@ public class GameImpl implements Game {
     private Color playerInTurn;
     private int turnCount = 0;
     private Color playerInVictory;
-    private Map checkerCount = new HashMap<Location, Integer>();
-    private Map checkerColor = new HashMap<Location, Color>();
+    private Map<Location, Integer> checkerCount = new HashMap<Location, Integer>();
+    private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
     private MoveStrategy moveStrategy;
     private boolean hasRedInnerTableBeenFilled = false;
@@ -42,6 +42,11 @@ public class GameImpl implements Game {
 
         boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
         if(checkerIsNotOwnedByPlayerInTurn) {
+            return false;
+        }
+
+        boolean numberOfMovesLeftHasBeenExhausted = getNumberOfMovesLeft() < 1;
+        if(numberOfMovesLeftHasBeenExhausted) {
             return false;
         }
 

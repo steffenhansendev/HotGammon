@@ -5,7 +5,7 @@ import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.common.MoveStrategy;
 
-public class AlphaMonMoveStrategy implements MoveStrategy {
+public class GammaMonMoveStrategy implements MoveStrategy {
 
     public boolean isMoveValid(Location from, Location to, Game game) {
         return true;
@@ -16,6 +16,13 @@ public class AlphaMonMoveStrategy implements MoveStrategy {
     }
 
     public void updateDice(Location from, Location to, Game game) {
-
+        switch(game.getNumberOfMovesLeft()) {
+            case 0:
+            case 1:
+                ((GameImpl) game).setDiceValuesLeft(new int[0]);
+                break;
+            case 2:
+                ((GameImpl) game).setDiceValuesLeft(new int[1]);
+        }
     }
 }
