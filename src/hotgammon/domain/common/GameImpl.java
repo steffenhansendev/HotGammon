@@ -12,11 +12,13 @@ public class GameImpl implements Game {
     private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
     private MoveStrategy moveStrategy;
+    private DiceStrategy diceStrategy;
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
 
-    public GameImpl(MoveStrategy moveStrategy){
+    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy){
         this.moveStrategy = moveStrategy;
+        this.diceStrategy = diceStrategy;
         diceRolled = new int[2];
         turnCount = 0;
     }
@@ -69,7 +71,7 @@ public class GameImpl implements Game {
         }
 
         if(hasCheckersBeenMoved) {
-            moveStrategy.updateDice(from, to, this);
+            diceStrategy.updateDice(from, to, this);
             return true;
         }
 

@@ -1,8 +1,7 @@
-package hotgammon.domain.variants;
+package hotgammon.domain.variance;
 
 import hotgammon.domain.common.*;
 
-import java.sql.Blob;
 import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
@@ -50,7 +49,6 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
 
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
-        indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
             if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
@@ -79,15 +77,5 @@ public class BetaMonMoveStrategy implements MoveStrategy {
             return true;
         }
         return false;
-    }
-
-    public void updateDice(Location from, Location to, Game game) {
-        if(game.getNumberOfMovesLeft() == 1) {
-            ((GameImpl) game).setDiceValuesLeft(new int[0]);
-        } else {
-            int indexOfRemainingDice = indexOfValidDice + 1;
-            indexOfRemainingDice = indexOfRemainingDice % game.diceValuesLeft().length;
-            ((GameImpl) game).setDiceValuesLeft(new int[]{game.diceValuesLeft()[indexOfRemainingDice]});
-        }
     }
 }

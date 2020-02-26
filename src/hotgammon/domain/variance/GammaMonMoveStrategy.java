@@ -1,4 +1,4 @@
-package hotgammon.domain.variants;
+package hotgammon.domain.variance;
 
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;

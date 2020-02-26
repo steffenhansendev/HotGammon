@@ -3,16 +3,15 @@ package hotgammon.domain;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
-import hotgammon.domain.variants.AlphaMonMoveStrategy;
-import hotgammon.domain.variants.GammaMonMoveStrategy;
+import hotgammon.domain.variance.GammaMonMoveStrategy;
+import hotgammon.domain.variance.NaiveDiceStrategy;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
 
 public class TestGammaMon {
 
-    private Game game = new GameImpl(new GammaMonMoveStrategy());
+    private Game game = new GameImpl(new GammaMonMoveStrategy(), new NaiveDiceStrategy());
 
     @Test
     public void bearingOffBlackCheckerShouldBeAllowed() {

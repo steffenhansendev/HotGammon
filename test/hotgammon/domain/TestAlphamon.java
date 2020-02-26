@@ -4,7 +4,8 @@ import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
-import hotgammon.domain.variants.AlphaMonMoveStrategy;
+import hotgammon.domain.variance.AlphaMonMoveStrategy;
+import hotgammon.domain.variance.RealDiceStrategy;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -13,7 +14,7 @@ public class TestAlphamon {
   
   @Before
   public void setup() {
-    game = new GameImpl(new AlphaMonMoveStrategy());
+    game = new GameImpl(new AlphaMonMoveStrategy(), new RealDiceStrategy());
   }
 
 
