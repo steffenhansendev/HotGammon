@@ -7,10 +7,6 @@ import hotgammon.domain.common.MoveStrategy;
 
 public class AlphaMonMoveStrategy implements MoveStrategy {
 
-    public boolean isMoveValid(Location from, Location to, Game game) {
-        return true;
-    }
-
     public boolean resolveHit(Location from, Location to, Game game) {
         return false;
     }
@@ -18,5 +14,4 @@ public class AlphaMonMoveStrategy implements MoveStrategy {
     public int getIndexOfValidForValidMove(Location from, Location to, Game game) {
         return 0;
     }
-
 }

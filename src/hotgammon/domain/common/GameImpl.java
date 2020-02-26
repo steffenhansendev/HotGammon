@@ -128,7 +128,6 @@ public class GameImpl implements Game {
         return hasRedInnerTableBeenFilled;
     }
 
-    //PRIVATE DELEGATIONS
     private void rollTheDice() {
         switch (diceRolled[0]) {
             case -1:
