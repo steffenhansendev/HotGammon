@@ -3,11 +3,8 @@ package hotgammon.domain.variance;
 import hotgammon.domain.common.DiceStrategy;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
-import hotgammon.domain.common.Location;
 
-public class RealDiceStrategy implements DiceStrategy {
-
-
+public class RollMoveDiceStrategy implements DiceStrategy {
     public void updateDiceValuesLeft(int indexOfValidDice, Game game) {
         if(game.getNumberOfMovesLeft() == 1) {
             ((GameImpl) game).setDiceValuesLeft(new int[0]);

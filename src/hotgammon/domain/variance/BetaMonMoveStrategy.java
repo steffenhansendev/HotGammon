@@ -6,86 +6,22 @@ import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
 
-    private int signedDistanceOfMove = -1;
-    private int indexOfValidDice = -1;
-
-    public boolean isMoveValid(Location from, Location to, Game game) {
-
-        Color colorOfPlayerInTurn = game.getPlayerInTurn();
-
-        Location barOfPlayerInTurn = colorOfPlayerInTurn == Color.BLACK ? Location.B_BAR : Location.R_BAR;
-
-        boolean areCheckersBarred = game.getCount(barOfPlayerInTurn) > 0;
-
-        if(areCheckersBarred) {
-            boolean isMoveFromBar = from == barOfPlayerInTurn;
-            if(!isMoveFromBar){
-                return false;
-            }
-        }
-        Location barOfOpponent = barOfPlayerInTurn == Location.B_BAR ? Location.R_BAR : Location.B_BAR;
-
-        boolean isMoveToOpponentBar = to == barOfOpponent;
-
-        if(isMoveToOpponentBar) {
-            return false;
-        }
-
-        boolean isMoveBearOff = to == Location.B_BEAR_OFF || to == Location.R_BEAR_OFF;
-
-
-        boolean isMovePrematureBearOff = isMoveBearOff &&
-                (colorOfPlayerInTurn == Color.BLACK && !((GameImpl) game).getHasBlackInnerTableBeenFilled() ||
-                        colorOfPlayerInTurn == Color.RED && !((GameImpl) game).getHasRedInnerTableBeenFilled());
-        if(isMovePrematureBearOff) {
-            return false;
-        }
-
-        signedDistanceOfMove = Location.distance(from, to);
-        boolean isBackwards =
-                colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;
-        if(isBackwards) {
-            return false;
-        }
-
-        int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
-        for(int i = 0; i < game.diceValuesLeft().length; i++) {
-            if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
-                indexOfValidDice = i;
-            }
-        }
-        boolean isDistanceNotAvailable = indexOfValidDice == -1;
-        if(isDistanceNotAvailable) {
-            return false;
-        }
-        return true;
-    }
-
     public int getIndexOfValidForValidMove(Location from, Location to, Game game) {
 
         Color colorOfPlayerInTurn = game.getPlayerInTurn();
-
         Location barOfPlayerInTurn = colorOfPlayerInTurn == Color.BLACK ? Location.B_BAR : Location.R_BAR;
-
-        boolean areCheckersBarred = game.getCount(barOfPlayerInTurn) > 0;
-
-        if(areCheckersBarred) {
-            boolean isMoveFromBar = from == barOfPlayerInTurn;
-            if(!isMoveFromBar){
-                return -1;
-            }
+        boolean areCheckersOfPlayerInTurnBarred = game.getCount(barOfPlayerInTurn) > 0;
+        boolean isMoveProhibitedByCheckersInBar = areCheckersOfPlayerInTurnBarred && from != barOfPlayerInTurn;
+        if(isMoveProhibitedByCheckersInBar) {
+            return -1;
         }
-        Location barOfOpponent = barOfPlayerInTurn == Location.B_BAR ? Location.R_BAR : Location.B_BAR;
 
-        boolean isMoveToOpponentBar = to == barOfOpponent;
-
-        if(isMoveToOpponentBar) {
+        boolean isMoveToBar = to == Location.B_BAR || to == Location.R_BAR;
+        if(isMoveToBar) {
             return -1;
         }
 
         boolean isMoveBearOff = to == Location.B_BEAR_OFF || to == Location.R_BEAR_OFF;
-
-
         boolean isMovePrematureBearOff = isMoveBearOff &&
                 (colorOfPlayerInTurn == Color.BLACK && !((GameImpl) game).getHasBlackInnerTableBeenFilled() ||
                         colorOfPlayerInTurn == Color.RED && !((GameImpl) game).getHasRedInnerTableBeenFilled());
@@ -93,7 +29,7 @@ public class BetaMonMoveStrategy implements MoveStrategy {
             return -1;
         }
 
-        signedDistanceOfMove = Location.distance(from, to);
+        int signedDistanceOfMove = Location.distance(from, to);
         boolean isBackwards =
                 colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
@@ -101,15 +37,13 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
 
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
+        int indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
             if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
             }
         }
-        boolean isDistanceNotAvailable = indexOfValidDice == -1;
-        if(isDistanceNotAvailable) {
-            return -1;
-        }
+
         return indexOfValidDice;
     }
 

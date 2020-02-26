@@ -42,13 +42,13 @@ public class GameImpl implements Game {
 
     public boolean move(Location from, Location to) {
 
-        boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
-        if (checkerIsNotOwnedByPlayerInTurn) {
+        boolean isCheckerOwnedByPlayerInTurn = playerInTurn == checkerColor.get(from);
+        if (!isCheckerOwnedByPlayerInTurn) {
             return false;
         }
 
-        boolean numberOfMovesLeftHasBeenExhausted = getNumberOfMovesLeft() < 1;
-        if (numberOfMovesLeftHasBeenExhausted) {
+        boolean hasNumberOfMovesLeftBeenExhausted = getNumberOfMovesLeft() < 1;
+        if (hasNumberOfMovesLeftBeenExhausted) {
             return false;
         }
 
@@ -128,7 +128,6 @@ public class GameImpl implements Game {
         return hasRedInnerTableBeenFilled;
     }
 
-    //PRIVATE DELEGATIONS
     private void rollTheDice() {
         switch (diceRolled[0]) {
             case -1:
