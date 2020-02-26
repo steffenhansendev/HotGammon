@@ -4,14 +4,14 @@ import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.GammaMonMoveStrategy;
-import hotgammon.domain.variance.FreeMoveDiceStrategy;
+import hotgammon.domain.variance.MoveFreelyDiceStrategy;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class TestGammaMon {
 
-    private Game game = new GameImpl(new GammaMonMoveStrategy(), new FreeMoveDiceStrategy());
+    private Game game = new GameImpl(new GammaMonMoveStrategy(), new MoveFreelyDiceStrategy());
 
     @Test
     public void bearingOffBlackCheckerShouldBeAllowed() {

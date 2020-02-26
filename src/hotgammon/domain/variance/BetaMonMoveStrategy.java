@@ -38,18 +38,11 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
 
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
-
         int indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
             if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
             }
-        }
-
-
-        boolean isDistanceNotAvailable = indexOfValidDice == -1;
-        if(isDistanceNotAvailable) {
-            return -1;
         }
 
         return indexOfValidDice;

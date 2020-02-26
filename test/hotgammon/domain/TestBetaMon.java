@@ -5,7 +5,7 @@ import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.BetaMonMoveStrategy;
-import hotgammon.domain.variance.RollMoveDiceStrategy;
+import hotgammon.domain.variance.MoveByRollDiceStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class TestBetaMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaMonMoveStrategy(), new RollMoveDiceStrategy());
+        game = new GameImpl(new BetaMonMoveStrategy(), new MoveByRollDiceStrategy());
     }
 
     @Test
