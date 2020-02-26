@@ -30,6 +30,7 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
 
         int signedDistanceOfMove = Location.distance(from, to);
+
         boolean isBackwards =
                 colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;
         if(isBackwards) {
@@ -37,11 +38,18 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         }
 
         int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
+
         int indexOfValidDice = -1;
         for(int i = 0; i < game.diceValuesLeft().length; i++) {
             if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
                 indexOfValidDice = i;
             }
+        }
+
+
+        boolean isDistanceNotAvailable = indexOfValidDice == -1;
+        if(isDistanceNotAvailable) {
+            return -1;
         }
 
         return indexOfValidDice;
