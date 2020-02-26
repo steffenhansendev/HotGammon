@@ -58,8 +58,59 @@ public class BetaMonMoveStrategy implements MoveStrategy {
         if(isDistanceNotAvailable) {
             return false;
         }
-
         return true;
+    }
+
+    public int getIndexOfValidForValidMove(Location from, Location to, Game game) {
+
+        Color colorOfPlayerInTurn = game.getPlayerInTurn();
+
+        Location barOfPlayerInTurn = colorOfPlayerInTurn == Color.BLACK ? Location.B_BAR : Location.R_BAR;
+
+        boolean areCheckersBarred = game.getCount(barOfPlayerInTurn) > 0;
+
+        if(areCheckersBarred) {
+            boolean isMoveFromBar = from == barOfPlayerInTurn;
+            if(!isMoveFromBar){
+                return -1;
+            }
+        }
+        Location barOfOpponent = barOfPlayerInTurn == Location.B_BAR ? Location.R_BAR : Location.B_BAR;
+
+        boolean isMoveToOpponentBar = to == barOfOpponent;
+
+        if(isMoveToOpponentBar) {
+            return -1;
+        }
+
+        boolean isMoveBearOff = to == Location.B_BEAR_OFF || to == Location.R_BEAR_OFF;
+
+
+        boolean isMovePrematureBearOff = isMoveBearOff &&
+                (colorOfPlayerInTurn == Color.BLACK && !((GameImpl) game).getHasBlackInnerTableBeenFilled() ||
+                        colorOfPlayerInTurn == Color.RED && !((GameImpl) game).getHasRedInnerTableBeenFilled());
+        if(isMovePrematureBearOff) {
+            return -1;
+        }
+
+        signedDistanceOfMove = Location.distance(from, to);
+        boolean isBackwards =
+                colorOfPlayerInTurn == Color.BLACK && signedDistanceOfMove < 0 || colorOfPlayerInTurn == Color.RED && signedDistanceOfMove > 0;
+        if(isBackwards) {
+            return -1;
+        }
+
+        int absoluteDistanceOfMove = Math.abs(signedDistanceOfMove);
+        for(int i = 0; i < game.diceValuesLeft().length; i++) {
+            if(game.diceValuesLeft()[i] == absoluteDistanceOfMove) {
+                indexOfValidDice = i;
+            }
+        }
+        boolean isDistanceNotAvailable = indexOfValidDice == -1;
+        if(isDistanceNotAvailable) {
+            return -1;
+        }
+        return indexOfValidDice;
     }
 
     public boolean resolveHit(Location from, Location to, Game game) {

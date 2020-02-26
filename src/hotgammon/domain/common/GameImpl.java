@@ -16,7 +16,7 @@ public class GameImpl implements Game {
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
 
-    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy){
+    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy) {
         this.moveStrategy = moveStrategy;
         this.diceStrategy = diceStrategy;
         diceRolled = new int[2];
@@ -35,7 +35,7 @@ public class GameImpl implements Game {
         rollTheDice();
         changePlayerInTurn();
         turnCount += 1;
-        if(turnCount > 6) {
+        if (turnCount > 6) {
             playerInVictory = Color.RED;
         }
     }
@@ -43,17 +43,19 @@ public class GameImpl implements Game {
     public boolean move(Location from, Location to) {
 
         boolean checkerIsNotOwnedByPlayerInTurn = playerInTurn != checkerColor.get(from);
-        if(checkerIsNotOwnedByPlayerInTurn) {
+        if (checkerIsNotOwnedByPlayerInTurn) {
             return false;
         }
 
         boolean numberOfMovesLeftHasBeenExhausted = getNumberOfMovesLeft() < 1;
-        if(numberOfMovesLeftHasBeenExhausted) {
+        if (numberOfMovesLeftHasBeenExhausted) {
             return false;
         }
 
-        boolean isMoveValid = moveStrategy.isMoveValid(from, to, this);
-        if(!isMoveValid) {
+        int indexOfValidDice = moveStrategy.getIndexOfValidForValidMove(from, to, this);
+
+        boolean isMoveValid = indexOfValidDice != -1;
+        if (!isMoveValid) {
             return false;
         }
 
@@ -61,7 +63,7 @@ public class GameImpl implements Game {
 
         boolean hasCheckersBeenMoved = false;
 
-        if(isMoveHit) {
+        if (isMoveHit) {
             hasCheckersBeenMoved = moveStrategy.resolveHit(from, to, this);
         } else {
             checkerCount.put(from, (int) checkerCount.get(from) - 1);
@@ -70,8 +72,8 @@ public class GameImpl implements Game {
             hasCheckersBeenMoved = true;
         }
 
-        if(hasCheckersBeenMoved) {
-            diceStrategy.updateDice(from, to, this);
+        if (hasCheckersBeenMoved) {
+            diceStrategy.updateDiceValuesLeft(indexOfValidDice, this);
             return true;
         }
 
@@ -128,7 +130,7 @@ public class GameImpl implements Game {
 
     //PRIVATE DELEGATIONS
     private void rollTheDice() {
-        switch(diceRolled[0]) {
+        switch (diceRolled[0]) {
             case -1:
             case 5:
                 diceRolled[0] = 1;
@@ -166,7 +168,7 @@ public class GameImpl implements Game {
     }
 
     private void initializeCheckers() {
-        for(Location l : Location.values()) {
+        for (Location l : Location.values()) {
             checkerCount.put(l, 0);
             checkerColor.put(l, Color.NONE);
         }

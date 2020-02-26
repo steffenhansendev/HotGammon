@@ -15,4 +15,8 @@ public class AlphaMonMoveStrategy implements MoveStrategy {
         return false;
     }
 
+    public int getIndexOfValidForValidMove(Location from, Location to, Game game) {
+        return 0;
+    }
+
 }

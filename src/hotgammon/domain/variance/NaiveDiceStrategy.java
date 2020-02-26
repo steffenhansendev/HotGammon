@@ -3,10 +3,9 @@ package hotgammon.domain.variance;
 import hotgammon.domain.common.DiceStrategy;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
-import hotgammon.domain.common.Location;
 
 public class NaiveDiceStrategy implements DiceStrategy {
-    public void updateDice(Location from, Location to, Game game) {
+    public void updateDiceValuesLeft(int indexOfValidDice, Game game) {
         switch(game.getNumberOfMovesLeft()) {
             case 0:
             case 1:

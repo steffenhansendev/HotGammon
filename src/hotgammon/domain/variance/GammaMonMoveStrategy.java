@@ -15,6 +15,10 @@ public class GammaMonMoveStrategy implements MoveStrategy {
         return false;
     }
 
+    public int getIndexOfValidForValidMove(Location from, Location to, Game game) {
+        return 0;
+    }
+
     public void updateDice(Location from, Location to, Game game) {
         switch(game.getNumberOfMovesLeft()) {
             case 0:
