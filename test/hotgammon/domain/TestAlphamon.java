@@ -15,94 +15,82 @@ public class TestAlphamon {
   @Before
   public void setup() {
     game = new GameImpl(new AlphaMonMoveStrategy(), new MoveByRollDiceStrategy());
+    game.newGame();
   }
 
 
   @Test
   public void noPlayerShouldBeInTurnInitially() {
-    game.newGame();
     assertEquals("No player can be in turn before the game has begun.", Color.NONE, game.getPlayerInTurn());
   }
 
   @Test
   public void thereShouldBeNoWinnerInitially() {
-    game.newGame();
     assertEquals("No player can have won before the game has begun", Color.NONE, game.winner());
   }
 
   @Test
   public void R1ShouldHave2BlackCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on R1 must be 2 initially",2, game.getCount(Location.R1));
     assertEquals("Color of checker(s) on R1 must be black initially", Color.BLACK, game.getColor(Location.R1));
   }
 
   @Test
   public void B2ShouldHave0CheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on B2 must be 0 initially", 0, game.getCount(Location.B2));
     assertEquals("There can be no checkers on B2 initially", Color.NONE, game.getColor(Location.B2));
   }
 
   @Test
   public void R11ShouldHave0CheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on R11 must be 0 initially", 0, game.getCount(Location.R11));
     assertEquals("There can be no checkers on R11 initially", Color.NONE, game.getColor(Location.R11));
   }
 
   @Test
   public void B12ShouldHave5RedCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on B12 must be 5 initially", 5, game.getCount(Location.B12));
     assertEquals("Color of checker(s) on B12 must be red initially", Color.RED, game.getColor(Location.B12));
   }
 
   @Test
   public void B8ShouldHave3BlackCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on B8 must be 3 initially", 3, game.getCount(Location.B8));
     assertEquals("Color of checker(s) on B8 must be black initially", Color.BLACK, game.getColor(Location.B8));
   }
 
   @Test
   public void B6ShouldHave5BlackCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on B6 must be 5 initially", 5, game.getCount(Location.B6));
     assertEquals("Color of checker(s) on B8 must be black initially", Color.BLACK, game.getColor(Location.B6));
   }
 
   @Test
   public void B1ShouldHave2RedCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on B1 must be 2 initially", 2, game.getCount(Location.B1));
     assertEquals("Color of checker(s) on B1 must be red initially", Color.RED, game.getColor(Location.B1));
   }
 
   @Test
   public void R12ShouldHave5BlackCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on R12 must be 5 initially", 5, game.getCount(Location.R12));
     assertEquals("Color of checker(s) on R12 must be black initially", Color.BLACK, game.getColor(Location.R12));
   }
 
   @Test
   public void R8ShouldHave3RedCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on R8 must be 3 initially", 3, game.getCount(Location.R8));
     assertEquals("Color of checker(s) on R8 must be red initially", Color.RED, game.getColor(Location.R8));
   }
 
   @Test
   public void R6ShouldHave5RedCheckersInitially() {
-    game.newGame();
     assertEquals("Number of checkers on R6 must be 5 initially", 5, game.getCount(Location.R6));
     assertEquals("Color of checker(s) on R6 must be red initially", Color.RED, game.getColor(Location.R6));
   }
 
   @Test
   public void blackPlayerMovingCheckerFromR1toR2ShouldBeValidIn1stTurn() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
     assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
@@ -115,7 +103,6 @@ public class TestAlphamon {
 
   @Test
   public void movingBlackCheckerFromR1ToR6ShouldBeRejectedBecauseThisLocationIsRed() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     game.nextTurn();  //[3, 4] => Red
     game.nextTurn();  //[5, 6] => Black
@@ -124,14 +111,12 @@ public class TestAlphamon {
 
   @Test
   public void movingRedCheckerShouldBeRejectedWhenBlackIsInTurn() {
-    game.newGame();
-    game.nextTurn();
+    game.nextTurn();  //[1, 2] => Black
     assertFalse("Moving red checker from B1 to B2 must be rejected because black is in turn", game.move(Location.B1, Location.B2));
   }
 
   @Test
   public void movingBlackCheckerShouldBeRejectedWhenRedIsInTurn() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     game.nextTurn();  //[3, 4] => Red
     assertFalse("Moving black checker from R1 to R4 must be rejected because red is in turn", game.move(Location.R1, Location.R2));
@@ -139,7 +124,6 @@ public class TestAlphamon {
 
   @Test
   public void movingBlackCheckerShouldBeRejectedWhenMovesHaveBeenExhausted() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     game.move(Location.R1, Location.R3);
     game.move(Location.R3, Location.R4);
@@ -149,7 +133,6 @@ public class TestAlphamon {
 
   @Test
   public void totalNumberOfCheckersShouldBe30() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     int totalNumberOfCheckers = 0;
     for(Location l : Location.values()) {
@@ -163,8 +146,7 @@ public class TestAlphamon {
 
   @Test
   public void movesLeftShouldBe0AfterMoving2CheckersUsingSmallestDiceValueFirstIn1stTurn() {
-    game.newGame();
-    game.nextTurn();
+    game.nextTurn();  //[1, 2] => Black
     assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
     assertTrue("It must be valid for black to move a checker from R1 to R3 in first turn", game.move(Location.R1, Location.R3));
     assertEquals("Number of moves left must be 0 when black has exhausted the moves", 0, game.getNumberOfMovesLeft());
@@ -172,8 +154,7 @@ public class TestAlphamon {
 
   @Test
   public void movesLeftShouldBe0AfterMoving2CheckersUsingLargestDiceValueFirstIn1stTurn() {
-    game.newGame();
-    game.nextTurn();
+    game.nextTurn();  //[1, 2] => Black
     assertTrue("It must be valid for black to move a checker from R1 to R3 in first turn", game.move(Location.R1, Location.R3));
     assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R2));
     assertEquals("Number of moves left must be 0 when black has exhausted the moves", 0, game.getNumberOfMovesLeft());
@@ -181,65 +162,57 @@ public class TestAlphamon {
 
   @Test
   public void _1stRollShouldYield_1_2() {
-    game.newGame();//[1, 2]
-    game.nextTurn();
+    game.nextTurn();  //[1, 2] => Black
     assertArrayEquals("First roll must yield [1,2].", new int[]{1, 2}, game.diceThrown());
   }
 
   @Test
   public void _2ndRollShouldYield_3_4() {
-    game.newGame();
-    game.nextTurn();  //[1, 2]
-    game.nextTurn();  //[3, 4]
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
     assertArrayEquals("Second roll must yield [3,4].", new int[]{3, 4}, game.diceThrown());
   }
 
   @Test
   public void _3rdRollShouldYield_5_6() {
-    game.newGame();
-    game.nextTurn();  //[1, 2]
-    game.nextTurn();  //[3, 4]
-    game.nextTurn();  //[5, 6]
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
+    game.nextTurn();  //[5, 6] => Black
     assertArrayEquals("Third roll must yield [5,6].", new int[]{5, 6}, game.diceThrown());
   }
 
   @Test
   public void _4thRollShouldYield_1_2() {
-    game.newGame();
-    game.nextTurn();  //[1, 2]
-    game.nextTurn();  //[3, 4]
-    game.nextTurn();  //[5, 6]
-    game.nextTurn();  //[1, 2]
-    assertArrayEquals("Third roll must yield [5,6].", new int[]{1, 2}, game.diceThrown());
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
+    game.nextTurn();  //[5, 6] => Black
+    game.nextTurn();  //[1, 2] => Red
+    assertArrayEquals("Fourth roll must yield [1,2].", new int[]{1, 2}, game.diceThrown());
   }
 
   @Test
   public void blackPlayerShouldHave1stTurn() {
-    game.newGame();
-    game.nextTurn();  //Black
+    game.nextTurn();  //[1, 2] => Black
     assertEquals("Black player must have 1st turn.", Color.BLACK, game.getPlayerInTurn());
   }
 
   @Test
   public void redPlayerShouldHave2ndTurn() {
-    game.newGame();
-    game.nextTurn();  //Black
-    game.nextTurn();  //Red
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
     assertEquals("Red player must have 2nd turn.", Color.RED, game.getPlayerInTurn());
   }
 
   @Test
   public void blackPlayerShouldHave3rdTurn() {
-    game.newGame();
-    game.nextTurn();  //Black
-    game.nextTurn();  //Red
-    game.nextTurn();  //Black
+    game.nextTurn();  //[1, 2] => Black
+    game.nextTurn();  //[3, 4] => Red
+    game.nextTurn();  //[5, 6] => Black
     assertEquals("Black player must have 3rd turn.", Color.BLACK, game.getPlayerInTurn());
   }
 
   @Test
   public void redShouldHaveWonAfter6thTurn() {
-    game.newGame();
     game.nextTurn(); //1st turn
     game.nextTurn(); //2nd turn
     game.nextTurn(); //3rd turn
@@ -252,7 +225,6 @@ public class TestAlphamon {
 
   @Test
   public void thereShouldBeNoWinnerAfter5thTurn() {
-    game.newGame();
     game.nextTurn(); //1st turn
     game.nextTurn(); //2nd turn
     game.nextTurn(); //3rd turn
@@ -264,7 +236,6 @@ public class TestAlphamon {
 
   @Test
   public void blackPlayerMovingCheckerFromR1toR7ShouldBeValidIn1stTurn() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
     assertTrue("It must be valid for black to move a checker from R1 to R2 in first turn", game.move(Location.R1, Location.R7));
@@ -277,7 +248,6 @@ public class TestAlphamon {
 
   @Test
   public void blackPlayerMovingCheckerFromR1toR2ShouldBeValidIn3rdTurn() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     game.nextTurn();  //[3, 4] => Red
     game.nextTurn();  //[5, 6] => Black
@@ -292,7 +262,6 @@ public class TestAlphamon {
 
   @Test
   public void blackPlayerMovingCheckerFromR12toR2ShouldBeValidIn1stTurn() {
-    game.newGame();
     game.nextTurn();  //[1, 2] => Black
     assertEquals("Number of moves left must be 2 before black exhausts any moves", 2, game.getNumberOfMovesLeft());
     assertTrue("It must be valid for black to move a checker from R12 to R2 in first turn", game.move(Location.R12, Location.R2));
