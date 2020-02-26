@@ -20,4 +20,12 @@ public class TestGammaMon {
         game.nextTurn();    //[1, 2] => Black
         assertTrue("Bearing off black checker must be allowed", game.move(Location.B6, Location.B_BEAR_OFF));
     }
+
+    @Test
+    public void bearingOffRedCheckerShouldBeAllowed() {
+        game.newGame();
+        game.nextTurn();    //[1, 2] => Black
+        game.nextTurn();    //[1, 2] => Red
+        assertTrue("Bearing off black checker must be allowed", game.move(Location.R6, Location.R_BEAR_OFF));
+    }
 }
