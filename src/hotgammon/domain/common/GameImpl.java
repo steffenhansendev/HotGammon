@@ -6,19 +6,21 @@ import java.util.Map;
 public class GameImpl implements Game {
     private int[] diceRolled;
     private Color playerInTurn;
-    private int turnCount = 0;
     private Color playerInVictory;
+    private int turnCount = 0;
     private Map<Location, Integer> checkerCount = new HashMap<Location, Integer>();
     private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
     private MoveStrategy moveStrategy;
     private DiceStrategy diceStrategy;
+    private WinningStrategy winningStrategy;
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
 
-    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy) {
+    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy, WinningStrategy winningStrategy) {
         this.moveStrategy = moveStrategy;
         this.diceStrategy = diceStrategy;
+        this.winningStrategy = winningStrategy;
         diceRolled = new int[2];
         turnCount = 0;
     }
@@ -35,9 +37,7 @@ public class GameImpl implements Game {
         rollTheDice();
         changePlayerInTurn();
         turnCount += 1;
-        if (turnCount > 6) {
-            playerInVictory = Color.RED;
-        }
+        playerInVictory = winningStrategy.getWinner(this);
     }
 
     public boolean move(Location from, Location to) {
@@ -74,9 +74,9 @@ public class GameImpl implements Game {
 
         if (hasCheckersBeenMoved) {
             diceStrategy.updateDiceValuesLeft(indexOfValidDice, this);
+            playerInVictory = winningStrategy.getWinner(this);
             return true;
         }
-
         return false;
     }
 
@@ -126,6 +126,10 @@ public class GameImpl implements Game {
 
     public boolean getHasRedInnerTableBeenFilled() {
         return hasRedInnerTableBeenFilled;
+    }
+
+    public int getTurnCount() {
+        return turnCount;
     }
 
     private void rollTheDice() {

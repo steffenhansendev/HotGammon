@@ -1,7 +1,6 @@
 package hotgammon.domain.variance;
 
 import hotgammon.domain.common.*;
-
 import java.util.Map;
 
 public class BetaMonMoveStrategy implements MoveStrategy {
