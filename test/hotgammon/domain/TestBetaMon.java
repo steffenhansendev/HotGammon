@@ -18,7 +18,7 @@ public class TestBetaMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaMonMoveStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy(), new BetaMonFactory());
+        game = new GameImpl(new BetaMonFactory());
         game.newGame();
     }
 

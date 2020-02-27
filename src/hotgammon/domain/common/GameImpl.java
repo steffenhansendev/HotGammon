@@ -19,10 +19,7 @@ public class GameImpl implements Game {
     private RollStrategy rollStrategy;
 
 
-    public GameImpl(MoveStrategy moveStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy, HotGammonFactory hotGammonFactory) {
-        this.moveStrategy = moveStrategy;
-        this.winningStrategy = winningStrategy;
-        this.rollStrategy = rollStrategy;
+    public GameImpl(HotGammonFactory hotGammonFactory) {
         this.moveStrategy = hotGammonFactory.createMoveStrategy();
         this.winningStrategy = hotGammonFactory.createWinningStrategy();
         this.rollStrategy = hotGammonFactory.createRollStrategy();

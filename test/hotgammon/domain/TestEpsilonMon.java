@@ -35,7 +35,7 @@ public class TestEpsilonMon {
 
     @Test
     public void rolling1and6ShouldYield6and1() {
-        game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new TestStubRollStrategy(1, 6), new TestEpsilonMonFactory(1, 6));
+        game = new GameImpl(new TestEpsilonMonFactory(1, 6));
         game.newGame();
         game.nextTurn();
         int[] diceValuesLeft = game.diceValuesLeft();

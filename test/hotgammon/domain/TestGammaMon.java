@@ -5,9 +5,6 @@ import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.GammaMonFactory;
-import hotgammon.domain.variance.move.GammaMonMoveStrategy;
-import hotgammon.domain.variance.roll.FixedRollStrategy;
-import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +17,7 @@ public class TestGammaMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new GammaMonMoveStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy(), new GammaMonFactory());
+        game = new GameImpl(new GammaMonFactory());
         game.newGame();
     }
 

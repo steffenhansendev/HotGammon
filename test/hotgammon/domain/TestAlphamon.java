@@ -18,7 +18,7 @@ public class TestAlphamon {
   
   @Before
   public void setup() {
-    game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy(), new AlphaMonFactory());
+    game = new GameImpl(new AlphaMonFactory());
     game.newGame();
   }
 
