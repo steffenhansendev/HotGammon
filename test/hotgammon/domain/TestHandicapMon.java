@@ -16,7 +16,7 @@ public class TestHandicapMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new HandicapMoveStrategy(new BetaMonMoveStrategy(), new AlphaMonMoveStrategy(), Color.RED), new HandicapDiceStrategy(new MoveByRollDiceStrategy(), new MoveFreelyDiceStrategy(), Color.RED), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy());
+        game = new GameImpl(new HandicapMoveStrategy(new BetaMonMoveStrategy(), new AlphaMonMoveStrategy(), Color.RED), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy());
         game.newGame();
     }
 

@@ -7,7 +7,6 @@ import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.BetaMonMoveStrategy;
 import hotgammon.domain.variance.FirstOffBearerWinningStrategy;
 import hotgammon.domain.variance.FixedRollStrategy;
-import hotgammon.domain.variance.MoveByRollDiceStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +17,7 @@ public class TestBetaMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaMonMoveStrategy(), new MoveByRollDiceStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy());
+        game = new GameImpl(new BetaMonMoveStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy());
         game.newGame();
     }
 

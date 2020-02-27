@@ -14,14 +14,12 @@ public class GameImpl implements Game {
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
     private MoveStrategy moveStrategy;
-    private DiceStrategy diceStrategy;
     private WinningStrategy winningStrategy;
     private RollStrategy rollStrategy;
 
 
-    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy) {
+    public GameImpl(MoveStrategy moveStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy) {
         this.moveStrategy = moveStrategy;
-        this.diceStrategy = diceStrategy;
         this.winningStrategy = winningStrategy;
         this.rollStrategy = rollStrategy;
         diceRolled = new int[2];
@@ -77,8 +75,6 @@ public class GameImpl implements Game {
         }
 
         if (hasCheckersBeenMoved) {
-            //diceStrategy.updateDiceValuesLeft(indexOfValidDice, this);
-
             if(getNumberOfMovesLeft() == 1) {
                 setDiceValuesLeft(new int[0]);
             } else {
@@ -86,8 +82,6 @@ public class GameImpl implements Game {
                 indexOfRemainingDice = indexOfRemainingDice % diceValuesLeft().length;
                 setDiceValuesLeft(new int[]{diceValuesLeft()[indexOfRemainingDice]});
             }
-
-
             playerInVictory = winningStrategy.getWinner(this);
             return true;
         }

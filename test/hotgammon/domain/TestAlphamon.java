@@ -6,7 +6,6 @@ import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.AlphaMonMoveStrategy;
 import hotgammon.domain.variance.FixedRollStrategy;
-import hotgammon.domain.variance.MoveByRollDiceStrategy;
 import hotgammon.domain.variance.RedWinsAfter6thTurnWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,7 @@ public class TestAlphamon {
   
   @Before
   public void setup() {
-    game = new GameImpl(new AlphaMonMoveStrategy(), new MoveByRollDiceStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy());
+    game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy());
     game.newGame();
   }
 
