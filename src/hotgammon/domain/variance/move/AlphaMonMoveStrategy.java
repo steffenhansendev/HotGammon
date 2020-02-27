@@ -1,4 +1,4 @@
-package hotgammon.domain.variance;
+package hotgammon.domain.variance.move;
 
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.Location;

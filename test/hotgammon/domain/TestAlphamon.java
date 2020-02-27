@@ -4,9 +4,9 @@ import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
-import hotgammon.domain.variance.AlphaMonMoveStrategy;
-import hotgammon.domain.variance.FixedRollStrategy;
-import hotgammon.domain.variance.RedWinsAfter6thTurnWinningStrategy;
+import hotgammon.domain.variance.move.AlphaMonMoveStrategy;
+import hotgammon.domain.variance.roll.FixedRollStrategy;
+import hotgammon.domain.variance.winning.RedWinsAfter6thTurnWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

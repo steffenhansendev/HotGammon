@@ -1,4 +1,4 @@
-package hotgammon.domain.variance;
+package hotgammon.domain.variance.roll;
 
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.RollStrategy;
