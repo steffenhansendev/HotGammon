@@ -1,7 +1,6 @@
 package hotgammon.domain.variance;
 
 import hotgammon.domain.common.Game;
-import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.common.MoveStrategy;
 

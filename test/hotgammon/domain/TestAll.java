@@ -1,6 +1,6 @@
 package hotgammon.domain;
 
-import org.junit.runner.*;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
                 TestLocation.class,
                 TestAlphamon.class,
                 TestBetaMon.class,
-                TestGammaMon.class
+                TestGammaMon.class,
+                TestHandicapMon.class
         }
 )
 

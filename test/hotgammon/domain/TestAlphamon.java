@@ -7,7 +7,9 @@ import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.AlphaMonMoveStrategy;
 import hotgammon.domain.variance.MoveByRollDiceStrategy;
 import hotgammon.domain.variance.RedWinsAfter6thTurnWinningStrategy;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestAlphamon {

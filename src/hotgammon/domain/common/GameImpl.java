@@ -7,7 +7,7 @@ public class GameImpl implements Game {
     private int[] diceRolled;
     private Color playerInTurn;
     private Color playerInVictory;
-    private int turnCount = 0;
+    private int turnCount;
     private Map<Location, Integer> checkerCount = new HashMap<Location, Integer>();
     private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
@@ -30,6 +30,7 @@ public class GameImpl implements Game {
         diceRolled[1] = -1;
         playerInTurn = Color.NONE;
         playerInVictory = Color.NONE;
+        turnCount = 0;
         initializeCheckers();
     }
 

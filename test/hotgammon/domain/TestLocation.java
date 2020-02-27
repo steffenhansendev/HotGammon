@@ -1,8 +1,11 @@
 package hotgammon.domain;
+
 import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Location;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /** Testing of the location enumeration.
  
