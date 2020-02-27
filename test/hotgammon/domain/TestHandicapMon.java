@@ -1,15 +1,9 @@
 package hotgammon.domain;
 
-import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.HandicapMonFactory;
-import hotgammon.domain.variance.move.AlphaMonMoveStrategy;
-import hotgammon.domain.variance.move.BetaMonMoveStrategy;
-import hotgammon.domain.variance.move.HandicapMoveStrategy;
-import hotgammon.domain.variance.roll.FixedRollStrategy;
-import hotgammon.domain.variance.winning.RedWinsAfter6thTurnWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

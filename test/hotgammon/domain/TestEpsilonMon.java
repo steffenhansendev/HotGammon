@@ -3,9 +3,6 @@ package hotgammon.domain;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.surrogates.TestEpsilonMonFactory;
-import hotgammon.domain.surrogates.TestStubRollStrategy;
-import hotgammon.domain.variance.move.AlphaMonMoveStrategy;
-import hotgammon.domain.variance.winning.RedWinsAfter6thTurnWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
