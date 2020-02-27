@@ -65,21 +65,21 @@ public class GameImpl implements Game {
             return false;
         }
 
-        boolean isMoveHit = checkerColor.get(from) != checkerColor.get(to) && checkerColor.get(to) != Color.NONE && (int) checkerCount.get(to) > 0;
+        boolean isMoveHit = checkerColor.get(from) != checkerColor.get(to) && checkerColor.get(to) != Color.NONE && checkerCount.get(to) > 0;
 
         boolean hasCheckersBeenMoved = false;
 
         if (isMoveHit) {
             hasCheckersBeenMoved = moveStrategy.resolveHit(from, to, this);
         } else {
-            checkerCount.put(from, (int) checkerCount.get(from) - 1);
-            checkerCount.put(to, (int) checkerCount.get(to) + 1);
+            checkerCount.put(from, checkerCount.get(from) - 1);
+            checkerCount.put(to, checkerCount.get(to) + 1);
             checkerColor.put(to, checkerColor.get(from));
             hasCheckersBeenMoved = true;
         }
 
         if (hasCheckersBeenMoved) {
-            if(getNumberOfMovesLeft() == 1) {
+            if (getNumberOfMovesLeft() == 1) {
                 setDiceValuesLeft(new int[0]);
             } else {
                 int indexOfRemainingDice = indexOfValidDice + 1;
@@ -113,11 +113,11 @@ public class GameImpl implements Game {
     }
 
     public Color getColor(Location location) {
-        return (Color) checkerColor.get(location);
+        return checkerColor.get(location);
     }
 
     public int getCount(Location location) {
-        return (int) checkerCount.get(location);
+        return checkerCount.get(location);
     }
 
     public void setDiceValuesLeft(int[] diceValuesLeft) {
@@ -148,7 +148,7 @@ public class GameImpl implements Game {
         diceRolled = rollStrategy.rollTheDice(this);
 
         //diceValuesLeft must be sorted descendingly according to Game interface
-        if(diceRolled[0] < diceRolled[1]) {
+        if (diceRolled[0] < diceRolled[1]) {
             diceValuesLeft = new int[]{diceRolled[1], diceRolled[0]};
         }
     }

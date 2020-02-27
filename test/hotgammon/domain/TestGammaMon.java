@@ -5,9 +5,9 @@ import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.GammaMonFactory;
-import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
-import hotgammon.domain.variance.roll.FixedRollStrategy;
 import hotgammon.domain.variance.move.GammaMonMoveStrategy;
+import hotgammon.domain.variance.roll.FixedRollStrategy;
+import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

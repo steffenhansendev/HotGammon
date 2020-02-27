@@ -6,8 +6,8 @@ import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
 import hotgammon.domain.variance.BetaMonFactory;
 import hotgammon.domain.variance.move.BetaMonMoveStrategy;
-import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
 import hotgammon.domain.variance.roll.FixedRollStrategy;
+import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

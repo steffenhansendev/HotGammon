@@ -20,7 +20,7 @@ public class GammaMonMoveStrategy implements MoveStrategy {
     }
 
     public void updateDice(Location from, Location to, Game game) {
-        switch(game.getNumberOfMovesLeft()) {
+        switch (game.getNumberOfMovesLeft()) {
             case 0:
             case 1:
                 ((GameImpl) game).setDiceValuesLeft(new int[0]);

@@ -8,7 +8,7 @@ import hotgammon.domain.common.WinningStrategy;
 public class RedWinsAfter6thTurnWinningStrategy implements WinningStrategy {
 
     public Color getWinner(Game game) {
-        if(((GameImpl) game).getTurnCount() > 6) {
+        if (((GameImpl) game).getTurnCount() > 6) {
             return Color.RED;
         }
         return Color.NONE;
