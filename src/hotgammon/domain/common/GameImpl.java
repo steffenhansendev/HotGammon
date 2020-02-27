@@ -10,7 +10,7 @@ public class GameImpl implements Game {
     private int turnCount;
     private Map<Location, Integer> checkerCount = new HashMap<Location, Integer>();
     private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
-    private int[] diceValuesLeft = new int[0];
+    private int[] diceValuesLeft = new int[2];
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
     private MoveStrategy moveStrategy;
@@ -140,7 +140,9 @@ public class GameImpl implements Game {
         diceRolled = rollStrategy.rollTheDice(this);
 
         //diceValuesLeft must be sorted descendingly according to Game interface
-        diceValuesLeft = new int[]{diceRolled[1], diceRolled[0]};
+        if(diceRolled[0] < diceRolled[1]) {
+            diceValuesLeft = new int[]{diceRolled[1], diceRolled[0]};
+        }
     }
 
     private void changePlayerInTurn() {

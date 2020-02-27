@@ -10,7 +10,8 @@ import org.junit.runners.Suite;
                 TestAlphamon.class,
                 TestBetaMon.class,
                 TestGammaMon.class,
-                TestHandicapMon.class
+                TestHandicapMon.class,
+                TestEpsilonMon.class
         }
 )
 
