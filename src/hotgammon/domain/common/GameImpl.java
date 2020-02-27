@@ -13,7 +13,6 @@ public class GameImpl implements Game {
     private int[] diceValuesLeft = new int[2];
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
-    private HotGammonFactory hotGammonFactory;
     private MoveStrategy moveStrategy;
     private WinningStrategy winningStrategy;
     private RollStrategy rollStrategy;
