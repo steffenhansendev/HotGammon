@@ -4,6 +4,7 @@ import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
+import hotgammon.domain.variance.AlphaMonFactory;
 import hotgammon.domain.variance.move.AlphaMonMoveStrategy;
 import hotgammon.domain.variance.roll.FixedRollStrategy;
 import hotgammon.domain.variance.winning.RedWinsAfter6thTurnWinningStrategy;
@@ -17,7 +18,7 @@ public class TestAlphamon {
   
   @Before
   public void setup() {
-    game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy());
+    game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new FixedRollStrategy(), new AlphaMonFactory());
     game.newGame();
   }
 

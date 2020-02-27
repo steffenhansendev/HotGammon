@@ -1,4 +1,4 @@
-package hotgammon.domain;
+package hotgammon.domain.surrogates;
 
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.RollStrategy;

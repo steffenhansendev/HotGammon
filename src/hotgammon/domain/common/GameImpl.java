@@ -13,15 +13,19 @@ public class GameImpl implements Game {
     private int[] diceValuesLeft = new int[2];
     private boolean hasRedInnerTableBeenFilled = false;
     private boolean hasBlackInnerTableBeenFilled = false;
+    private HotGammonFactory hotGammonFactory;
     private MoveStrategy moveStrategy;
     private WinningStrategy winningStrategy;
     private RollStrategy rollStrategy;
 
 
-    public GameImpl(MoveStrategy moveStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy) {
+    public GameImpl(MoveStrategy moveStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy, HotGammonFactory hotGammonFactory) {
         this.moveStrategy = moveStrategy;
         this.winningStrategy = winningStrategy;
         this.rollStrategy = rollStrategy;
+        this.moveStrategy = hotGammonFactory.createMoveStrategy();
+        this.winningStrategy = hotGammonFactory.createWinningStrategy();
+        this.rollStrategy = hotGammonFactory.createRollStrategy();
         diceRolled = new int[2];
         turnCount = 0;
     }

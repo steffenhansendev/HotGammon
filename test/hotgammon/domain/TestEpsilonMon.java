@@ -2,6 +2,8 @@ package hotgammon.domain;
 
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
+import hotgammon.domain.surrogates.TestEpsilonMonFactory;
+import hotgammon.domain.surrogates.TestStubRollStrategy;
 import hotgammon.domain.variance.move.AlphaMonMoveStrategy;
 import hotgammon.domain.variance.winning.RedWinsAfter6thTurnWinningStrategy;
 import org.junit.Before;
@@ -32,7 +34,7 @@ public class TestEpsilonMon {
 
     @Test
     public void rolling1and6ShouldYield6and1() {
-        game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new TestStubRollStrategy(1, 6));
+        game = new GameImpl(new AlphaMonMoveStrategy(), new RedWinsAfter6thTurnWinningStrategy(), new TestStubRollStrategy(1, 6), new TestEpsilonMonFactory(1, 6));
         game.newGame();
         game.nextTurn();
         int[] diceValuesLeft = game.diceValuesLeft();

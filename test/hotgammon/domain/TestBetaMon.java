@@ -4,6 +4,7 @@ import hotgammon.domain.common.Color;
 import hotgammon.domain.common.Game;
 import hotgammon.domain.common.GameImpl;
 import hotgammon.domain.common.Location;
+import hotgammon.domain.variance.BetaMonFactory;
 import hotgammon.domain.variance.move.BetaMonMoveStrategy;
 import hotgammon.domain.variance.winning.FirstOffBearerWinningStrategy;
 import hotgammon.domain.variance.roll.FixedRollStrategy;
@@ -17,7 +18,7 @@ public class TestBetaMon {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaMonMoveStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy());
+        game = new GameImpl(new BetaMonMoveStrategy(), new FirstOffBearerWinningStrategy(), new FixedRollStrategy(), new BetaMonFactory());
         game.newGame();
     }
 
