@@ -11,16 +11,19 @@ public class GameImpl implements Game {
     private Map<Location, Integer> checkerCount = new HashMap<Location, Integer>();
     private Map<Location, Color> checkerColor = new HashMap<Location, Color>();
     private int[] diceValuesLeft = new int[0];
+    private boolean hasRedInnerTableBeenFilled = false;
+    private boolean hasBlackInnerTableBeenFilled = false;
     private MoveStrategy moveStrategy;
     private DiceStrategy diceStrategy;
     private WinningStrategy winningStrategy;
-    private boolean hasRedInnerTableBeenFilled = false;
-    private boolean hasBlackInnerTableBeenFilled = false;
+    private RollStrategy rollStrategy;
 
-    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy, WinningStrategy winningStrategy) {
+
+    public GameImpl(MoveStrategy moveStrategy, DiceStrategy diceStrategy, WinningStrategy winningStrategy, RollStrategy rollStrategy) {
         this.moveStrategy = moveStrategy;
         this.diceStrategy = diceStrategy;
         this.winningStrategy = winningStrategy;
+        this.rollStrategy = rollStrategy;
         diceRolled = new int[2];
         turnCount = 0;
     }
@@ -134,22 +137,9 @@ public class GameImpl implements Game {
     }
 
     private void rollTheDice() {
-        switch (diceRolled[0]) {
-            case -1:
-            case 5:
-                diceRolled[0] = 1;
-                diceRolled[1] = 2;
-                break;
-            case 1:
-                diceRolled[0] = 3;
-                diceRolled[1] = 4;
-                break;
-            case 3:
-                diceRolled[0] = 5;
-                diceRolled[1] = 6;
-                break;
-            default:
-        }
+        diceRolled = rollStrategy.rollTheDice(this);
+
+        //diceValuesLeft must be sorted descendingly according to Game interface
         diceValuesLeft = new int[]{diceRolled[1], diceRolled[0]};
     }
 
