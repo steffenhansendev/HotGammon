@@ -77,7 +77,17 @@ public class GameImpl implements Game {
         }
 
         if (hasCheckersBeenMoved) {
-            diceStrategy.updateDiceValuesLeft(indexOfValidDice, this);
+            //diceStrategy.updateDiceValuesLeft(indexOfValidDice, this);
+
+            if(getNumberOfMovesLeft() == 1) {
+                setDiceValuesLeft(new int[0]);
+            } else {
+                int indexOfRemainingDice = indexOfValidDice + 1;
+                indexOfRemainingDice = indexOfRemainingDice % diceValuesLeft().length;
+                setDiceValuesLeft(new int[]{diceValuesLeft()[indexOfRemainingDice]});
+            }
+
+
             playerInVictory = winningStrategy.getWinner(this);
             return true;
         }
